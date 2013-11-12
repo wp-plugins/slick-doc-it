@@ -1,0 +1,301 @@
+<?php
+
+//Main setting page function
+function doc_it_settings_page() {
+	
+add_action( 'wp_enqueue_style', 'doc_it_admin_css' );
+
+?>
+<style type="text/css">
+.final-shortcode-textarea, .shortcode-generator-form, .final-instagram-user-id-textarea, instagram-shortcode-form {
+	display: none;
+}
+</style>
+  
+<link href='http://fonts.googleapis.com/css?family=Rambla:400,700' rel='stylesheet' type='text/css'>
+<div class="doc-it-admin-wrap">
+  <h1>Doc It Settings</h1>
+  
+  <a class="buy-extensions-btn" href="http://www.slickremix.com/product-category/wordpress-plugins/" target="_blank">see more of our plugins here</a>
+<?php 
+if(is_plugin_active('doc-it-premium/doc-it-premium.php')) {
+   include('../wp-content/plugins/doc-it-premium/admin/doc-it-multiple-categories-settings-page.php');
+}
+else {
+	
+  		$options = get_option('doc_it_menu_labelz');
+		if (!empty($options))	{
+		foreach($options as $key => $link) 
+			{ 
+				if($link == '') 
+				{ 
+					unset($options[$key]); 
+				} 
+			} 
+		$options = array_values(array_filter($options));	
+	}
+  ?>
+  
+  
+  
+  <form method="post" class="doc-it-settings-admin-form" action="options.php"  name="createMenu">
+    <?php wp_nonce_field('update-options'); ?>
+    <div class="doc-it-settings-admin-input-wrap company-info-style">
+     <div class="use-of-plugin">1. Input the Main Name for what you are going to document and save it. (ie. My Project, My Book, My Plugin, etc...) This creates an admin menu item. (on the left of this page under "DocIt" tab) This admin menu item is where you will go to make the categories for the item you are documenting.</div>
+     
+   <?php if (!empty($options))	{
+	   	echo '<h3 class="need-premium">Please Purchase the <a href="http://www.slickremix.com/product/doc-it-premium-extension/" target="_blank">DocIt Premium Extension</a> to create as many Document Items as you want!</h3>';
+	    echo'<input id="doc-it-create-id" readonly="readonly" placeholder="Please upgrade to create more" class="doc-it-settings-admin-input doc-it-custom-name need-premium-input" type="text"  value="" />';
+		 echo'<br/>';
+	}
+	else {
+	  echo'<input name="doc_it_menu_labelz[1]" id="doc-it-create-id" class="doc-it-settings-admin-input doc-it-custom-name" type="text"/>';
+	  echo'<br/>';
+	}
+	if (!empty($options))	{
+	   foreach ($options as $key => $value) {
+		   $final_key = preg_replace("/[^A-Za-z0-9 '-]/","",$options[$key]);
+		   echo '<div class="doc_it_menu_labels_wrap1"><a class="delete_option doc_it_menu_labels1" href="javascript:;">X</a>';
+		   	echo '<input id="doc_it_menu_labels1" readonly="readonly" name="doc_it_menu_labelz[1]" class="doc-it-settings-admin-input no_input_backg" type="text" value="'.$final_key.'" /><br/>';
+		   echo '</div>';
+	}
+}//not empty check
+
+?>
+      <div class="clear"></div>
+    </div>
+    <!--/doc-it-settings-admin-input-wrap-->
+    <input type="hidden" name="action" value="update" />
+    <input type="hidden" name="page_options" value="doc_it_menu_labelz" />
+    <input type="submit" class="doc-it-admin-submit-btn" value="<?php _e('Save Changes') ?>" />
+  </form>
+  
+  
+  <div class="doc-it-settings-admin-input-wrap company-info-style">  
+  <script>
+  jQuery(document).ready(function() {
+		  jQuery(".doc_it_menu_labels1").click(function(){
+				 jQuery('#doc_it_menu_labels1').val('');
+				 jQuery('.doc_it_menu_labels_wrap1').addClass('di_disappear');
+				 jQuery('#doc_it_menu_labels1').remove();
+		  });
+   });
+</script> 
+<?php }//end NOT Premium?>
+
+  <div class="use-of-plugin-2">2. Now select which Doc It Category you would like to generate a shortcode for using the select option below.</div>
+  <div class="doc-it-icon-wrap"> <a href="https://www.facebook.com/SlickRemix" target="_blank" class="facebook-icon"></a> </div>
+  <form class="doc-it-admin-form">
+    <select id="shortcode-form-selector">
+      <option value="">Please Select a Category</option>
+      <?php 
+global $wp_taxonomies;
+if ($wp_taxonomies){
+foreach($wp_taxonomies as $taxonomy){
+ if($taxonomy->object_type[0] == 'Doc It' && !empty($taxonomy->labels->label)){
+ $taxonomy_menu_name = $taxonomy->labels->label; 
+ $taxonomy_name = $taxonomy->query_var;
+ ?>		 
+          <option value="<?php print $taxonomy_name?>-shortcode-form"><?php print $taxonomy_menu_name?></option>
+ <?php } 
+ } 
+?>
+      </select>  
+  </form>
+  <!--/doc-it-admin-form-->
+<?php  
+  
+?>  
+  
+  <?php
+foreach($wp_taxonomies as $main_taxonomy) {
+	if ($main_taxonomy->object_type[0] == 'Doc It' && !empty($main_taxonomy->labels->label))	{
+		 $main_taxonomy_menu_name = $main_taxonomy->labels->label; 
+		$main_taxonomy_name = $main_taxonomy->query_var; 
+?>
+  <div class="docit-<?php print $main_taxonomy_name?>-shortcode-form">
+    <form class="doc-it-admin-form shortcode-generator-form <?php print $main_taxonomy_name?>-shortcode-form">
+      <h2><?php print $main_taxonomy_menu_name?> Shortcode Generator</h2>
+      <div class="instructional-text">You must create an <a href="edit.php?post_type=docit_intro" target="_blank">Introduction Post</a> then you can select one below.<br/>
+      This is the content that will appear on the page you decide to paste your shortcode on. (Basically, the post will be the "Front Page" of the Document Item you select it for.)</div>
+      <div class="doc-it-admin-input-wrap <?php print $main_taxonomy_name?>_id">
+        <div class="doc-it-admin-input-label">Introduction Post (required)</div>
+        <input type="hidden" id="<?php print $main_taxonomy_name?>_id" class="doc-it-admin-input" value="<?php print $main_taxonomy_name?>" />
+        
+         <select id="<?php print $main_taxonomy_name?>_intro">
+      <option value="">Please Select an Introduction Post</option>
+      <?php 
+		$pre_sub_posts = new WP_Query("post_type=docit_intro");
+		if ($pre_sub_posts-> have_posts()) {		
+			 //loop through posts
+			while ($pre_sub_posts-> have_posts()) {
+				$pre_sub_posts->the_post();?>
+				<option value="<?php print the_ID();?>"><?php print the_title();?></option>
+                
+      <?php
+			}//end while
+		}//end if
+ ?>
+      </select>  
+        <div class="clear"></div>
+      </div>
+      <!--/doc-it-admin-input-wrap-->
+      
+      <input type="button" class="doc-it-admin-submit-btn" value="Generate Doc It Shortcode" onclick="updateTextArea_<?php print $main_taxonomy_name?>();" tabindex="4" style="margin-right:1em;" />
+      <div class="doc-it-admin-input-wrap final-shortcode-textarea">
+        <div class="instructional-text">Now copy and paste the shortcode below to a <a href="edit.php?post_type=page" target="_blank">Page that you should make</a>. Name it relative to your Doc It Menu you created above. The shortcode will not work on posts, it must be a page.</div>
+        <input class="copyme <?php print $main_taxonomy_name?>-final-shortcode doc-it-admin-input" value="" />
+        <div class="clear"></div>
+      </div>
+      <!--/doc-it-admin-input-wrap-->
+      
+    </form>
+  </div>
+  <!--/docit-facebook_group-shortcode-form--> 
+  
+  <script>
+//START Script for shortcode creation//
+function updateTextArea_<?php print $main_taxonomy_name?>() {
+    //hidden Id Input
+	var <?php print $main_taxonomy_name?>_id = ' id=' + jQuery("input#<?php print $main_taxonomy_name?>_id").val(); 
+	
+	if (<?php print $main_taxonomy_name?>_id == " id=") {
+	  	 jQuery(".<?php print $main_taxonomy_name;?>_id").addClass('docit-empty-error');  
+      	 jQuery("input#<?php print $main_taxonomy_name?>_id").focus();
+		 return false;
+	}
+	if (<?php print $main_taxonomy_name?>_id != " id=") {
+	  	 jQuery(".<?php print $main_taxonomy_name?>_id").removeClass('docit-empty-error');  
+	}
+	
+	//hidden Instructions select
+	var <?php print $main_taxonomy_name?>_intro = ' intro=' + jQuery( "select#<?php print $main_taxonomy_name?>_intro" ).val();
+	
+	if (<?php print $main_taxonomy_name?>_intro == " intro=") {
+	  	 jQuery("select#<?php print $main_taxonomy_name?>_intro").addClass('docit-empty-error');  
+      	 jQuery("select#<?php print $main_taxonomy_name?>_intro").focus();
+		 return false;
+	}
+	if (<?php print $main_taxonomy_name?>_intro != " intro=") {
+	  	 jQuery("select#<?php print $main_taxonomy_name?>_intro").removeClass('docit-empty-error');  
+	}
+	
+		var final_<?php print $main_taxonomy_name?>_shorcode = '[docit' + <?php print $main_taxonomy_name?>_id + <?php print $main_taxonomy_name?>_intro +']'
+
+jQuery('.<?php print $main_taxonomy_name?>-final-shortcode').val(final_<?php print $main_taxonomy_name?>_shorcode);
+	
+	jQuery('.<?php print $main_taxonomy_name?>-shortcode-form .final-shortcode-textarea').slideDown();
+	
+}
+//END Script for shortcode creation//
+</script>
+  <?php }//endif
+}//endforeach
+}
+?>
+  <a class="doc-it-admin-slick-logo" href="http://www.slickremix.com" target="_blank"></a> 
+  </div><!--doc-it-settings-admin-input-wrap-->
+  
+  <div class="doc-it-settings-admin-input-wrap company-info-style">  
+  <div class="use-of-plugin-2"><h1>Additional Options</h1> 
+  If you would like to be able to change the colors of the menu please <a href="http://www.slickremix.com/product/doc-it-premium-extension/" target="_blank">click here</a> to upgrade.</div>
+  <!-- custom option for padding -->
+  <form method="post" class="doc-it-color-settings-admin-form" action="options.php">
+    <?php wp_nonce_field('update-options'); ?>
+    <div class="doc-it-color-settings-admin-input-wrap company-info-style doc-it-color-options-turn-on-custom-colors">
+      <div class="doc-it-color-settings-admin-input-label docit-wp-header-custom"> Check the box to turn ON the custom padding option for the Doc It Plugin. This will make it so the menu and content fits nicely within your website. Simply define the numbers to suite your desired spacing. Here is how it works. 25px(top padding) 20px(right padding) 25px(bottom padding) 30px(left padding). That is an example of the placeholder text you see in the input below.</div>
+      <p>
+        <input name="doc-it-color-options-settings-custom-css-main-wrapper-padding" class="doc-it-color-settings-admin-input" type="checkbox"  id="doc-it-color-options-settings-custom-css-main-wrapper-padding" value="1" <?php echo checked( '1', get_option( 'doc-it-color-options-settings-custom-css-main-wrapper-padding' ) ); ?>/>
+        <?php  
+                        if (get_option( 'doc-it-color-options-settings-custom-css-main-wrapper-padding' ) == '1') {
+                           echo "<strong>Checked:</strong> Custom padding option is being used now.";
+                        }
+                        else	{
+                          echo "<strong>Not Checked:</strong> You are using the default padding of 0px.";
+                        }
+                           ?>
+        <br/>
+        <label>Padding:</label>
+        <input name="doc-it-color-options-main-wrapper-padding-input" class="doc-it-color-settings-admin-input" type="text"  id="doc-it-color-options-main-wrapper-padding-input" placeholder="25px 20px 25px 30px " value="<?php echo get_option('doc-it-color-options-main-wrapper-padding-input'); ?>" title="Only Numbers and px are allowed"/>
+      </p>
+      <div class="clear"></div>
+      
+      <div class="doc-it-color-settings-admin-input-label docit-wp-header-custom"><div class="styled-wrap-options">Check the box to turn ON the option to display code in your content and it be colored and spaced professionally. <a href="http://www.slickremix.com/2013/11/07/rainbow-color-options/" target="_blank">Click here</a> to see example usage and all the Supported Languages, this could not be easier. Thanks to <a href="http://craig.is/making/rainbows/" target="_blank">Rainbows</a>. </div>
+      <input name="doc-it-color-coded" class="doc-it-color-settings-admin-input" type="checkbox"  id="doc-it-color-coded" value="1" <?php echo checked( '1', get_option( 'doc-it-color-coded' ) ); ?>/>
+        		   <?php  
+                        if (get_option( 'doc-it-color-coded' ) == '1') {
+                           echo "<strong>Checked:</strong> You are NOW using Rainbows to color your code.";
+                        }
+                        else	{
+                          echo "<strong>Not Checked:</strong> You are not using Rainbows to color you code.";
+                        }
+                     ?>
+                           
+      <div class="clear"></div>
+           </div><!--styled-wrap-options-->
+           
+           <!-- This works it's not fully developed yet. We need to make conditions for the menu on the front end when active. -->
+           <div style="display:none;" class="doc-it-color-settings-admin-input-label docit-wp-header-custom"><div class="styled-wrap-options">Check the box to make the menu items close when landing on a page.</div>
+      <input name="doc-it-display-menu-closed" class="doc-it-color-settings-admin-input" type="checkbox"  id="doc-it-display-menu-closed" value="1" <?php echo checked( '1', get_option( 'doc-it-display-menu-closed' ) ); ?>/>
+        		   <?php  
+                        if (get_option( 'doc-it-display-menu-closed' ) == '1') {
+                           echo "<strong>Checked:</strong> The menu will now be closed when the page loads.";
+                        }
+                        else	{
+                          echo "<strong>Not Checked:</strong> The menu will be open when the page loads.";
+                        }
+                     ?>
+                                
+      <div class="clear"></div>
+           </div><!--styled-wrap-options-->     
+                           
+    </div>
+    <!--/doc-it-color-settings-admin-input-wrap-->
+    
+    <input type="hidden" name="action" value="update" />
+    <input type="hidden" name="page_options" value="doc-it-color-options-settings-custom-css-main-wrapper-padding,doc-it-color-options-main-wrapper-padding-input, doc-it-color-coded,doc-it-display-menu-closed" />
+    <input type="submit" class="doc-it-admin-submit-btn" value="<?php _e('Save Changes') ?>" />
+  </form>
+  <!-- close custom option for padding --> 
+  
+</div>
+<!--/doc-it-admin-wrap--> 
+
+<script type="text/javascript">
+//only allow uppercase, lowercase, spaces and 1-9
+ jQuery("#doc-it-create-id").keypress(function(event){
+        var ew = event.which;
+        if(ew == 32)
+            return true;
+        if(48 <= ew && ew <= 57)
+            return true;
+        if(65 <= ew && ew <= 90)
+            return true;
+        if(97 <= ew && ew <= 122)
+            return true;
+        return false;
+		alert('error');
+    });
+	
+jQuery(function() {    
+    jQuery('#shortcode-form-selector').change(function(){
+        jQuery('.shortcode-generator-form').hide();
+        jQuery('.' + jQuery(this).val()).fadeIn('fast');
+    });
+});
+//select all 
+jQuery(".copyme").focus(function() {
+    var jQuerythis = jQuery(this);
+    jQuerythis.select();
+
+    // Work around Chrome's little problem
+    jQuerythis.mouseup(function() {
+        // Prevent further mouseup intervention
+        jQuerythis.unbind("mouseup");
+        return false;
+    });
+});
+</script>
+<?php
+}
+?>

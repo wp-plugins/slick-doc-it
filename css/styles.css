@@ -1,0 +1,381 @@
+.clear {
+	clear: both;
+}
+.docit-menu-wrap ul {
+	line-height: 1.714285714 !important;
+}
+.docit-menu-wrap {
+	text-decoration: none;
+	width: 36%;
+	float: left;
+	margin-right: 3%;
+	border: 0px solid #eee;
+	box-shadow: 0 1px 2px #ddd;
+	padding-bottom: 20px;
+	line-height: 1.714285714 !important;
+	margin-bottom: 40px;
+	background:#fff;
+}
+#doc-it-content article:first-child {
+   margin-top:0px; 
+}
+.docit-menu-wrap a {
+	text-decoration: none;
+	display: block;
+	-webkit-transition: all 0.30s ease-in-out;
+	-moz-transition: all 0.30s ease-in-out;
+	-o-transition: all 0.30s ease-in-out;
+	transition: all 0.30s ease-in-out;
+}
+.docit-menu li.docit-main-header {
+	list-style: none;
+	padding: 0;
+	margin: 0 0 10px;
+	position: relative;
+	-webkit-transition: all 0.30s ease-in-out;
+	-moz-transition: all 0.30s ease-in-out;
+	-o-transition: all 0.30s ease-in-out;
+	transition: all 0.30s ease-in-out;
+}
+.docit-menu a.docit-main-cat-title:hover {
+	background: #222;
+}
+.docit-menu li a.docit-main-cat-title {
+	font-size: 18px;
+	font-weight: bold;
+	color: #FFF;
+	display: block;
+	padding: 15px 40px 15px 19px;
+	background: #3C3C3C;
+	line-height:18px;
+	font-family: "Open Sans", Helvetica, Arial, sans-serif;
+}
+a.docit-main-cat-title:hover {
+	color: #eee;
+}
+.docit-menu li.docit-main-header div {
+	position: absolute;
+	right: 12px;
+	top: 0px;
+	color: #FFF;
+	margin:0;
+	padding:0;
+	font-size: 29px;
+	line-height: 50px;
+	cursor: pointer;
+	font-family: Helvetica, Arial, sans-serif;
+}
+[class^="icon-"],[class*=" icon-"] {
+	margin:0 !important;
+	padding:0 !important;
+	text-align: right !important;
+}
+.docit-menu-wrap li.docit-main-link {
+	margin: 0 0 0 20px;
+}
+.docit-menu-wrap li.docit-main-link.di-active {
+	background: #eee;
+	margin: 4px 15px 4px 15px !important;
+	padding: 4px 0 4px 10px !important;
+	border-radius: 4px; 
+	-webkit-transition: background 0.30s ease-in-out;
+	-moz-transition: background 0.30s ease-in-out;
+	-o-transition: background 0.30s ease-in-out;
+	transition: background 0.30s ease-in-out;
+}
+.docit-menu-wrap .docit-sub-header {
+	margin: 0 0 0 19px !important;
+}
+.docit-menu-wrap ul.docit-menu {
+	margin: 0 0 15px;
+	padding: 0;
+}
+ul.docit-menu .docit-main-cat-title {
+	margin-top: 0;
+}
+ul.docit-menu li a {
+	font-size: 14px;
+}
+li.docit-sub-header a {
+}
+li.docit-sub-header a.docit-sub-cat-title {
+	font-size: 16px;
+	font-weight: bold;
+	color:#333;
+}
+.docit-menu li {
+	list-style: none;
+	padding: 0;
+	position: relative;
+}
+ul.docit-sub-sub-menu li a {
+	padding-right:10px;
+}
+a.docit-sub-sub-cat-title {
+	font-size: 14px !important;
+}
+.docit-sub-sub-menu {
+	padding: 0;
+	margin: 0;
+}
+ul.docit-sub-menu li {
+	padding: 0;
+	margin: 0 15px 0 33px;
+}
+ul.docit-sub-sub-menu li {
+	padding: 0;
+	margin: 0 0 0 18px;
+}
+ul.docit-sub-sub-menu li.docit-sub-sub-header {
+	padding: 0;
+	margin: 0;
+	position: relative;
+}
+ul.docit-sub-sub-menu li.docit-sub-sub-header div, .docit-menu .docit-sub-header div {
+	position: absolute;
+	right: 15px;
+	top: -1px;
+	color: #333;
+	font-size: 15px;
+	cursor: pointer;
+}
+.docit-menu li.docit-sub-menu-wrap {
+	margin: 0;
+}
+.docit-sub-post {
+	margin: 0 0 0 36px;
+}
+.docit-post-title {
+	color: #888;
+}
+.docit-sub-sub-cat-title {
+}
+.docit-main-link a {
+	color: #888;
+}
+a.docit-sub-sub-cat-title {
+	color: #838383;
+	font-weight: bold;
+}
+li.docit-sub-sub-post {
+}
+li.docit-sub-sub-post a {
+	color: #888;
+}
+ul.docit-sub-menu {
+	margin: 0;
+	padding: 0;
+}
+body.tax-di_categories #content, body.single-docit #content {
+	width: 100%;
+}
+body.tax-di_categories #docit-archive-wrap, body.single-docit #docit-archive-wrap {
+	float: left !important;
+	width: 60% !important;
+}
+.docit-menu-wrap .docit-sub-header.di-active {
+	background: #C7C7C7;
+	margin: 4px 10px 4px 10px !important;
+	padding: 4px 0 4px 15px !important;
+	border-radius: 4px;
+	box-shadow: 1px 1px 1px #efefef;
+	-webkit-transition: background 0.30s ease-in-out;
+	-moz-transition: background 0.30s ease-in-out;
+	-o-transition: background 0.30s ease-in-out;
+	transition: background 0.30s ease-in-out;
+}
+.docit-menu-wrap .docit-sub-header.di-active a {
+	color: #FFF;
+}
+.docit-menu-wrap .docit-sub-header.di-active:hover {
+	background: #A5A5A5;
+}
+.docit-menu-wrap .docit-sub-header.di-active div {
+	top: 5px;
+	right: 10px;
+	color: #FFF;
+}
+.di-active a:hover {
+}
+ul.docit-sub-menu li.docit-sub-sub-post.di-active {
+	padding: 5px 0 5px 10px;
+	background: #eee;
+	border-radius: 5px;
+	margin: 4px 20px 4px 8px;
+}
+ul.docit-sub-menu li.di-active {
+	padding: 5px 10px 5px 10px;
+	background: #eee;
+	border-radius: 5px;
+	margin: 4px 25px 4px 23px;
+	-webkit-transition: background 0.30s ease-in-out;
+	-moz-transition: background 0.30s ease-in-out;
+	-o-transition: background 0.30s ease-in-out;
+	transition: background 0.30s ease-in-out;
+}
+ul.docit-sub-menu li ul.docit-sub-sub-menu .docit-sub-sub-header.di-active {
+	padding: 5px 0 5px 10px;
+	background: #eee;
+	border-radius: 5px;
+	margin: 4px 25px 4px -10px;
+}
+ul.docit-sub-menu li.di-active a {
+/* color: #FFF; */
+}
+.docit-sub-sub-post a:hover {
+	color: #000;
+}
+#docit-archive-wrap {
+	float: left;
+	width: 61%;
+}
+#docit-archive-wrap h1.docit-entry-title {
+	font-size: 28px;
+	line-height: 34px;
+	font-weight: bold;
+	padding: 6px 0 0;
+	margin: 0 0 15px 0;
+}
+.type-docit {
+	margin: 0 !important;
+	padding: 0 !important;
+}
+.docit-entry-content, article.type-docit {
+	line-height: 25px;
+}
+.docit-entry-content p, article.type-docit p {
+	margin: 0 0 24px;
+}
+.docit-sub-post a {
+	color: #999;
+}
+#doc-it-content-wrap {
+	float: left;
+	width: 61%;
+}
+#doc-it-content-wrap h1.header-text-docit {
+	font-size: 30px;
+	margin-top: 5px;
+	margin-bottom: 0;
+	padding: 0;
+	line-height: 34px;
+}
+#doc-it-content-wrap #breadcrumb {
+	padding: 0;
+	margin: 7px 0 28px 1px;
+} 
+#doc-it-content-wrap #breadcrumb {
+	padding: 0;
+	font-size: 14px;
+	margin: 5px 0 25px 1px;
+	border-bottom:1px dotted #ddd;
+	padding-bottom:10px;
+	line-height:19px;
+}
+#doc-it-content-wrap #breadcrumb .icon-home {
+	font-size: 15px;
+	margin-right: 4px !important;
+}
+#doc-it-content-wrap #breadcrumb a {
+	padding: 0;
+	margin: 0;
+	font-size: 14px !important;
+	text-decoration: none;
+	-webkit-transition: all 0.30s ease-in-out;
+	-moz-transition: all 0.30s ease-in-out;
+	-o-transition: all 0.30s ease-in-out;
+	transition: all 0.30s ease-in-out;
+}
+header.doc-it-entry-header {
+	font-size: 20px;
+	margin: 0px 0 8px;
+	padding: 11px 15px;
+	background: #F5F5F5;
+	position: relative;
+}
+h1.doc-it-entry-title {
+	margin:0;
+	padding:0;
+}
+.doc-it-entry-header h1 {
+	font-size: 20px !important;
+	margin: 0 !important;
+	padding:0 !important;
+	line-height: 25px !important;
+}
+.doc-it-entry-header .doc-it-entry-title a {
+	text-decoration: none;
+	font-size: 20px;
+	-webkit-transition: all 0.30s ease-in-out;
+	-moz-transition: all 0.30s ease-in-out;
+	-o-transition: all 0.30s ease-in-out;
+	transition: all 0.30s ease-in-out;
+}
+.doc-it-entry-summary {
+	padding: 10px 15px;
+	line-height: 24px;
+}
+.doc-it-entry-summary p {
+	padding: 0;
+	margin: 0;
+	line-height: 24px;
+}
+article.type-docit {
+	padding: 15px;
+}
+.doc-it-entry-meta span a {
+	text-decoration: none;
+	font-size: 12px !important;
+	display: block;
+	background: #FFF;
+	padding: 14px 10px 6px 15px;
+	text-align: center;
+	-webkit-transition: all 0.30s ease-in-out;
+	-moz-transition: all 0.30s ease-in-out;
+	-o-transition: all 0.30s ease-in-out;
+	transition: all 0.30s ease-in-out;
+	color:#999;
+}
+.doc-it-entry-meta {
+	width: auto;
+	position: absolute;
+	right: 1px;
+	top: 1px;
+}
+.doc-it-entry-meta {
+	line-height:25px !important;
+}
+span.docit-home-icon {
+	padding-right: 0;
+}
+#doc-it-content-wrap h1.header-text-docit.header-text-docit-page {
+	margin-bottom: 30px;
+	padding-bottom:10px;
+	border-bottom:1px dotted #ddd;
+}
+.doc-it-entry-meta span a .icon-edit {
+	font-size:19px;
+}
+.doc-it-entry-meta span a:hover {
+	color:#444;
+}
+#doc-it-content-wrap pre {
+	white-space: pre-wrap; /* css-3 */
+	white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+	white-space: -pre-wrap; /* Opera 4-6 */
+	white-space: -o-pre-wrap; /* Opera 7 */
+	word-wrap: break-word; /* Internet Explorer 5.5+ */
+}
+.di-empty-category {
+	padding:20px 20px;
+	line-height:22px;
+}
+
+/* Minimum width of 600 pixels. */
+@media screen and (max-width: 700px) {
+	.docit-menu-wrap, #doc-it-content-wrap {
+		float:none;
+		width:100%;
+		margin:0 0 20px;	
+	}
+}
