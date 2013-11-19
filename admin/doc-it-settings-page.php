@@ -49,7 +49,7 @@ else {
 		 echo'<br/>';
 	}
 	else {
-	  echo'<input name="doc_it_menu_labelz[1]" id="doc-it-create-id" class="doc-it-settings-admin-input doc-it-custom-name" type="text"/>';
+	  echo'<input name="doc_it_menu_labelz[1]" id="doc-it-create-id" placeholder="Letters and numbers only" class="doc-it-settings-admin-input doc-it-custom-name" type="text"/>';
 	  echo'<br/>';
 	}
 	if (!empty($options))	{
@@ -62,14 +62,14 @@ else {
 }//not empty check
 
 ?>
-      <div class="clear"></div>
-    </div>
-    <!--/doc-it-settings-admin-input-wrap-->
     <input type="hidden" name="action" value="update" />
     <input type="hidden" name="page_options" value="doc_it_menu_labelz" />
     <input type="submit" class="doc-it-admin-submit-btn" value="<?php _e('Save Changes') ?>" />
   </form>
   
+      <div class="clear"></div>
+    </div>
+    <!--/doc-it-settings-admin-input-wrap-->
   
   <div class="doc-it-settings-admin-input-wrap company-info-style">  
   <script>
@@ -116,8 +116,7 @@ foreach($wp_taxonomies as $main_taxonomy) {
   <div class="docit-<?php print $main_taxonomy_name?>-shortcode-form">
     <form class="doc-it-admin-form shortcode-generator-form <?php print $main_taxonomy_name?>-shortcode-form">
       <h2><?php print $main_taxonomy_menu_name?> Shortcode Generator</h2>
-      <div class="instructional-text">You must create an <a href="edit.php?post_type=docit_intro" target="_blank">Introduction Post</a> then you can select one below.<br/>
-      This is the content that will appear on the page you decide to paste your shortcode on. (Basically, the post will be the "Front Page" of the Document Item you select it for.)</div>
+      <div class="instructional-text">You must create an <a href="edit.php?post_type=docit_intro" target="_blank">Introduction Post</a> then you can select one below. This is the content that will appear on the page you decide to paste your shortcode on. (Basically, the post will be the "Front Page" of the Document Item you select it for.)</div>
       <div class="doc-it-admin-input-wrap <?php print $main_taxonomy_name?>_id">
         <div class="doc-it-admin-input-label">Introduction Post (required)</div>
         <input type="hidden" id="<?php print $main_taxonomy_name?>_id" class="doc-it-admin-input" value="<?php print $main_taxonomy_name?>" />
@@ -198,28 +197,72 @@ jQuery('.<?php print $main_taxonomy_name?>-final-shortcode').val(final_<?php pri
   
   <div class="doc-it-settings-admin-input-wrap company-info-style">  
   <div class="use-of-plugin-2"><h1>Additional Options</h1> 
-  If you would like to be able to change the colors of the menu please <a href="http://www.slickremix.com/product/doc-it-premium-extension/" target="_blank">click here</a> to upgrade.</div>
+   If you would like to change the colors of the menu please<?php 
+if(is_plugin_active('doc-it-premium/doc-it-premium.php')) {
+   echo' <a href="edit.php?post_type=docit&page=doc-it-color-options-settings-page">click here</a>.';
+}
+else {
+  		echo' <a href="http://www.slickremix.com/product/doc-it-premium-extension/" target="_blank">click here</a> to upgrade.';	
+	}
+  ?>
+  
+
+  
+  
+  </div>
   <!-- custom option for padding -->
   <form method="post" class="doc-it-color-settings-admin-form" action="options.php">
     <?php wp_nonce_field('update-options'); ?>
     <div class="doc-it-color-settings-admin-input-wrap company-info-style doc-it-color-options-turn-on-custom-colors">
-      <div class="doc-it-color-settings-admin-input-label docit-wp-header-custom"> Check the box to turn ON the custom padding option for the Doc It Plugin. This will make it so the menu and content fits nicely within your website. Simply define the numbers to suite your desired spacing. Here is how it works. 25px(top padding) 20px(right padding) 25px(bottom padding) 30px(left padding). That is an example of the placeholder text you see in the input below.</div>
-      <p>
+      <div class="doc-it-color-settings-admin-input-label docit-wp-header-custom"><p>Check the box to turn ON the custom padding option for the Doc It Plugin. This will make it so the menu and content fits nicely within your website. Simply define the numbers to suite your desired spacing. Here is how it works. 25px(top padding) 20px(right padding) 25px(bottom padding) 30px(left padding).</p><p>The same idea applies to the margin option. However, if you set a Max-Width for the Main Doc It Wrapper too we can add auto to the left and right margin so the frame will be positioned in the middle of the screen. Give it a try!</p></div>
+    <p>
         <input name="doc-it-color-options-settings-custom-css-main-wrapper-padding" class="doc-it-color-settings-admin-input" type="checkbox"  id="doc-it-color-options-settings-custom-css-main-wrapper-padding" value="1" <?php echo checked( '1', get_option( 'doc-it-color-options-settings-custom-css-main-wrapper-padding' ) ); ?>/>
         <?php  
                         if (get_option( 'doc-it-color-options-settings-custom-css-main-wrapper-padding' ) == '1') {
-                           echo "<strong>Checked:</strong> Custom padding option is being used now.";
+                           echo "<strong>Checked:</strong> Custom style options being used now.";
                         }
                         else	{
-                          echo "<strong>Not Checked:</strong> You are using the default padding of 0px.";
+                          echo "<strong>Not Checked:</strong> You are using the default styles.";
                         }
                            ?>
-        <br/>
+       </p>  <p>
         <label>Padding:</label>
         <input name="doc-it-color-options-main-wrapper-padding-input" class="doc-it-color-settings-admin-input" type="text"  id="doc-it-color-options-main-wrapper-padding-input" placeholder="25px 20px 25px 30px " value="<?php echo get_option('doc-it-color-options-main-wrapper-padding-input'); ?>" title="Only Numbers and px are allowed"/>
       </p>
+     <p>
+        <label>Max-Width:</label>
+        <input name="doc-it-color-options-main-wrapper-width-input" class="doc-it-color-settings-admin-input" type="text"  id="doc-it-color-options-main-wrapper-width-input" placeholder="970px" value="<?php echo get_option('doc-it-color-options-main-wrapper-width-input'); ?>" title="Only Numbers and px are allowed"/>
+      </p>
+      <p>
+        <label>Margin:</label>
+        <input name="doc-it-color-options-main-wrapper-margin-input" class="doc-it-color-settings-admin-input" type="text"  id="doc-it-color-options-main-wrapper-margin-input" placeholder="20px auto 25px auto" value="<?php echo get_option('doc-it-color-options-main-wrapper-margin-input'); ?>" title="Only Numbers and px are allowed"/>
+      </p>
+      <p>
+        <label>Menu:</label>
+        <select name="doc-it-color-options-menu-position" class="doc-it-color-settings-admin-input" id="doc-it-color-options-menu-position" value="<?php echo get_option('doc-it-color-options-menu-position'); ?>"/>
+        <option value="1">Left Side by default</option>
+        <option value="2" <?php if ( get_option('doc-it-color-options-menu-position') == 2 ) echo 'selected="selected"' ?>>Right Side</option>
+        </select>
+        
+      </p>
+      <br/>
+       <p>
+        <input name="doc-it-color-options-settings-custom-css" class="doc-it-color-settings-admin-input" type="checkbox"  id="doc-it-color-options-settings-custom-css" value="1" <?php echo checked( '1', get_option( 'doc-it-color-options-settings-custom-css' ) ); ?>/>
+        <?php  
+                        if (get_option( 'doc-it-color-options-settings-custom-css' ) == '1') {
+                           echo "<strong>Checked:</strong> Custom CSS option is being used now.";
+                        }
+                        else	{
+                          echo "<strong>Not Checked:</strong> You are using the default CSS.";
+                        }
+                           ?>
+       </p>
+       <p>
+         <label class="toggle-custom-textarea-show"><span>Show</span><span class="toggle-custom-textarea-hide">Hide</span> custom CSS</label>
+       <div class="docit-custom-css-text">Thanks for using our plugin :) Add your custom CSS additions or overrides below.</div>
+      <textarea name="doc-it-color-options-main-wrapper-css-input" class="doc-it-color-settings-admin-input" id="doc-it-color-options-main-wrapper-css-input"><?php echo get_option('doc-it-color-options-main-wrapper-css-input'); ?></textarea>
+      </p>
       <div class="clear"></div>
-      
       <div class="doc-it-color-settings-admin-input-label docit-wp-header-custom"><div class="styled-wrap-options">Check the box to turn ON the option to display code in your content and it be colored and spaced professionally. <a href="http://www.slickremix.com/2013/11/07/rainbow-color-options/" target="_blank">Click here</a> to see example usage and all the Supported Languages, this could not be easier. Thanks to <a href="http://craig.is/making/rainbows/" target="_blank">Rainbows</a>. </div>
       <input name="doc-it-color-coded" class="doc-it-color-settings-admin-input" type="checkbox"  id="doc-it-color-coded" value="1" <?php echo checked( '1', get_option( 'doc-it-color-coded' ) ); ?>/>
         		   <?php  
@@ -232,7 +275,7 @@ jQuery('.<?php print $main_taxonomy_name?>-final-shortcode').val(final_<?php pri
                      ?>
                            
       <div class="clear"></div>
-           </div><!--styled-wrap-options-->
+      </div><!--styled-wrap-options-->
            
            <!-- This works it's not fully developed yet. We need to make conditions for the menu on the front end when active. -->
            <div style="display:none;" class="doc-it-color-settings-admin-input-label docit-wp-header-custom"><div class="styled-wrap-options">Check the box to make the menu items close when landing on a page.</div>
@@ -253,7 +296,17 @@ jQuery('.<?php print $main_taxonomy_name?>-final-shortcode').val(final_<?php pri
     <!--/doc-it-color-settings-admin-input-wrap-->
     
     <input type="hidden" name="action" value="update" />
-    <input type="hidden" name="page_options" value="doc-it-color-options-settings-custom-css-main-wrapper-padding,doc-it-color-options-main-wrapper-padding-input, doc-it-color-coded,doc-it-display-menu-closed" />
+    <input type="hidden" name="page_options" value="
+    
+    doc-it-color-options-settings-custom-css-main-wrapper-padding,
+    doc-it-color-options-main-wrapper-padding-input,
+    doc-it-color-options-main-wrapper-margin-input,
+    doc-it-color-options-main-wrapper-width-input,
+    doc-it-color-options-main-wrapper-css-input,
+    doc-it-color-options-settings-custom-css,
+    doc-it-color-options-menu-position,
+    doc-it-color-coded,
+    doc-it-display-menu-closed" />
     <input type="submit" class="doc-it-admin-submit-btn" value="<?php _e('Save Changes') ?>" />
   </form>
   <!-- close custom option for padding --> 
@@ -295,7 +348,17 @@ jQuery(".copyme").focus(function() {
         return false;
     });
 });
+
+jQuery( document ).ready(function() {
+  jQuery( ".toggle-custom-textarea-show" ).click(function() {  
+		 jQuery('textarea#doc-it-color-options-main-wrapper-css-input').slideToggle();
+		  jQuery('.toggle-custom-textarea-show span').toggle();
+		  jQuery('.docit-custom-css-text').toggle();
+		  
+}); 
+  });
 </script>
+
 <?php
 }
 ?>

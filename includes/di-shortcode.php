@@ -20,15 +20,10 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 global $di_root_slug;
 global $di_list_of_taxs;
 
-//Eventually add premium page file
-if(is_plugin_active('doc-it-premium/feed-them-premium.php')) {
-   include('wp-content/plugins/doc-it-premium/doc-it-premium.php'); 
-}
-else 	{
-	extract( shortcode_atts( array(
-		'id' => '',
-		'intro' => '',
-	), $atts ) );
+extract( shortcode_atts( array(
+	'id' => '',
+	'intro' => '',
+), $atts ) );
 	
 global $docit_att;
 $docit_att = array(
@@ -36,7 +31,6 @@ $docit_att = array(
 		'intro' => $intro,
 	);
 	
-}
 ob_start(); 
 
 
@@ -64,7 +58,7 @@ echo '<div class="docit-menu-wrap">';
 		}
 		
 		$args = array(
-			'orderby'       => 'slug', 
+			'orderby'       => 'none', 
 			'order'         => 'ASC',
 			'hide_empty'    => true, 
 			'exclude'       => '', 
@@ -102,19 +96,61 @@ if($terms)	{
 				echo '<li class="docit-main-header"><a href="'.get_site_url().'/'.$di_root_slug.'/'.$tax_slug.'/'.$term->slug.'" class="docit-main-cat-title">'.$term-> name.'</a><div><i class="icon-angle-down"></i></div></li>';
 			}
 				$term_id_children = $term->term_id;
-					
-				$termchildren = get_term_children($term_id_children, $taxonomy);
+								  
+						  $term_children_args = array(
+							  'orderby'       => 'none', 
+							  'order'         => 'ASC',
+							  'hide_empty'    => false, 
+							  'exclude'       => '', 
+							  'exclude_tree'  => '', 
+							  'include'       => '',
+							  'number'        => '', 
+							  'fields'        => 'all', 
+							  'slug'          => '', 
+							  'parent'         => $term_id_children,
+							  'hierarchical'  => false, 
+							  'child_of'      => '', 
+							  'get'           => '', 
+							  'name__like'    => '',
+							  'pad_counts'    => false, 
+							  'offset'        => '', 
+							  'search'        => '', 
+							  'cache_domain'  => 'core'
+						  ); 
+						  // Gets every "category" (term) in this taxonomy to get the respective posts
+						   $termchildren = get_terms($taxonomy, $term_children_args);
 	
 							$child_count = 0;
 							//Add first sub-category
 							$check_list = array();
-							foreach ($termchildren as $key => $value) {
+							foreach ($termchildren as $termchild) {
 								$child_count++;
 
 								
-								$child_term = get_term($value, $taxonomy);
-															
-									$termchildren_lvl2 = get_term_children($child_term->term_id, $taxonomy);
+								$child_term = get_term($termchild->term_id, $taxonomy);
+								
+								$termchildren_lvl2_args = array(
+									'orderby'       => 'none', 
+									'order'         => 'ASC',
+									'hide_empty'    => false, 
+									'exclude'       => '', 
+									'exclude_tree'  => '', 
+									'include'       => '',
+									'number'        => '', 
+									'fields'        => 'all', 
+									'slug'          => '', 
+									'parent'         => $child_term->term_id,
+									'hierarchical'  => false, 
+									'child_of'      => '', 
+									'get'           => '', 
+									'name__like'    => '',
+									'pad_counts'    => false, 
+									'offset'        => '', 
+									'search'        => '', 
+									'cache_domain'  => 'core'
+								); 
+								// Gets every "category" (term) in this taxonomy to get the respective posts
+								$termchildren_lvl2 = get_terms($taxonomy, $termchildren_lvl2_args);
 									
 									$child_check = array();
 									$child_child_term_check = array();
@@ -123,7 +159,15 @@ if($terms)	{
 									   foreach ($termchildren_lvl2 as $pre_subkey => $pre_subvalue) {
 										  $pre_child_of_child_term = get_term($pre_subvalue, $taxonomy);
 										  $child_child_term_check[] = $pre_child_of_child_term_term_id->term_id;
-										   $pre_sub_posts = new WP_Query("taxonomy=$taxonomy&term=$pre_child_of_child_term->slug");
+										  $pre_sub_posts_args = array (
+														'orderby' => 'menu_order',
+														'order' => 'ASC',
+														'taxonomy'=> $taxonomy,
+														'term'=> $pre_child_of_child_term->slug,
+														'posts_per_page' => -1,
+														'suppress_filters' => true, 
+													  );
+										   $pre_sub_posts = new WP_Query($pre_sub_posts_args);
 											if ($pre_sub_posts-> have_posts()) {		
 												 //loop through posts
 												while ($pre_sub_posts-> have_posts()) {
@@ -143,9 +187,18 @@ if($terms)	{
 									  
 									 	 echo '<li class="docit-sub-header '.$child_term->slug.'"><a href="'.get_site_url().'/'.$di_root_slug.'/'.$tax_slug.'/'.$child_term->slug.'" class="docit-sub-cat-title">'.$child_term->name.'</a><div><i class="icon-angle-down"></i></div></li>';								  	 			 
 									}
-										
+
+																					
 										if(!in_array($child_term->term_id,$check_list) && !in_array($child_term->parent,$termchildren)) {
-											$posts = new WP_Query("taxonomy=$taxonomy&term=$child_term->slug");									
+											$no_parent_sub_posts_args = array (
+														'order' => 'ASC',
+														'orderby' => 'menu_order',
+														'taxonomy'=> $taxonomy,
+														'term'=> $child_term->slug,
+														'posts_per_page' => -1,
+														'suppress_filters' => true, 
+													  );
+											$posts = new WP_Query($no_parent_sub_posts_args);									
 
 										     //loop through posts
 											  while ($posts->have_posts()) {
@@ -175,9 +228,17 @@ if($terms)	{
 														  //Add children here
 														  foreach ($termchildren_lvl2 as $subkey => $subvalue) {
 													  
-															   $child_of_child_term = get_term($subvalue, $taxonomy);
-															  $sub_posts = new WP_Query( "taxonomy=$taxonomy&term=$child_of_child_term->slug" );
-															  
+													  
+															 $child_of_child_term = get_term($subvalue, $taxonomy);
+																 $sub_posts_args = array (
+																  'orderby' => 'menu_order',
+																  'order' => 'ASC',
+																  'taxonomy'=> $taxonomy,
+																  'term'=> $child_of_child_term->slug,
+																  'posts_per_page' => -1,
+																  'suppress_filters' => true, 
+																);
+															 $sub_posts = new WP_Query($sub_posts_args);
 															  
 															  if ( $sub_posts-> have_posts() ) {
 																 if(!in_array($child_of_child_term->term_id,$check_list_lvl2)){
@@ -211,8 +272,17 @@ if($terms)	{
 									
 							//If no Sub categories add posts under main title
 							if ($child_count == 0){
+								
+								$post_args = array (
+								'orderby' => 'menu_order',
+								'order' => 'ASC',
+								'taxonomy'=> $taxonomy,
+								'term'=> $term->slug,
+								'posts_per_page' => -1,
+								'suppress_filters' => true, 
+								);
 								// get posts
-									$posts = new WP_Query( "taxonomy=$taxonomy&term=$term->slug" );
+									$posts = new WP_Query($post_args );
 							
 									// check for posts
 									if ( $posts-> have_posts() ) {

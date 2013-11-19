@@ -4,23 +4,46 @@
 .display {
 	display: block !important;
 }
-.no_input_backg	{
-	background-color:transparent !important;
-	border:none !important;
-	outline:none !important;
+.no_input_backg {
+	background-color: transparent !important;
+	border: none !important;
+	outline: none !important;
 }
-.di_disappear	{
-  opacity:0;
-  height:0px;
-  -webkit-transition: all 1s ease-in-out;
-  -moz-transition: all 1s ease-in-out;
-  -o-transition: all 1s ease-in-out;
-  transition: all 1s ease-in-out;
+.di_disappear {
+	opacity: 0;
+	height: 0px;
+	-webkit-transition: all 1s ease-in-out;
+	-moz-transition: all 1s ease-in-out;
+	-o-transition: all 1s ease-in-out;
+	transition: all 1s ease-in-out;
 }
-.di_disappear a	{
-  display:none;
+.di_disappear a {
+	display: none;
 }
-
+.doc-it-color-settings-admin-form label {
+	width: 68px;
+	display: block;
+	float: left;
+	padding: 17px 0px 0 20px;
+	text-align: left;
+}
+label.toggle-custom-textarea-show {
+	width: 135px;
+	float: none;
+	text-align:center;
+	padding: 10px 0;
+	background:#818181;
+	border:1px solid #555;
+	border-radius:5px;
+	font-size:12px;
+	-webkit-transition: all .2s ease-in-out;
+	-moz-transition: all .2s ease-in-out;
+	-o-transition: all .2s ease-in-out;
+	transition: all .2s ease-in-out;
+}
+label.toggle-custom-textarea-show:hover {
+	background:#999;
+}
 .doc-it-admin-wrap {
 	color: #FFF;
 }
@@ -29,7 +52,7 @@
 	font-size: 13px;
 }
 .doc-it-admin-wrap p input[type='checkbox'], .docit-wp-header-custom input[type='checkbox'] {
-	margin:2px 2px 0 0 !important;
+	margin: 2px 2px 0 0 !important;
 }
 .use-of-plugin {
 	color: #fff;
@@ -37,23 +60,23 @@
 	font-weight: normal;
 	line-height: 20px;
 	width: 95%;
-	margin-bottom:10px;
+	margin-bottom: 10px;
 }
 .use-of-plugin-2 {
 	color: #fff;
 	font-size: 14px;
 	font-weight: normal;
 	line-height: 20px;
-	width:95%;
+	width: 95%;
 	border-bottom: 1px dotted #666;
-	padding:0 0 15px;
+	padding: 0 0 15px;
 }
 .final-shortcode-textarea, .shortcode-generator-form, .final-instagram-user-id-textarea, instagram-shortcode-form {
 	display: none;
 }
 .docit-empty-error {
 	background-color: #F37F52 !important;
-	color:#FFF;
+	color: #FFF;
 }
 .doc-it-admin-wrap h1 {
 	font-size: 32px;
@@ -70,9 +93,8 @@
 	margin: 1px 0 8px;
 }
 .doc-it-admin-wrap {
-	max-width: 790px;
 	min-height: 379px;
-	background: url(../images/docit-settings-back.png) repeat-y;
+	background: url(../images/docit-settings-back.png) center top;
 	background-color: #000000;
 	padding: 28px 28px 58px 28px;
 	-webkit-box-shadow: 2px 3px 7px 1px #000;
@@ -86,6 +108,7 @@
 .doc-it-admin-wrap h2 {
 	color: #fff;
 	font-size: 23px;
+	line-height:26px;
 	font-weight: 400;
 	margin: 15px 0 7px 0;
 	font-family: 'Rambla', sans-serif;
@@ -134,7 +157,7 @@
 	font-weight: bold;
 	text-transform: uppercase;
 	padding-top: 6px;
-	color:#333;
+	color: #333;
 }
 .doc-it-admin-input-label a {
 	text-decoration: underline !important;
@@ -153,15 +176,15 @@
 .doc-it-admin-input-default {
 	float: left;
 	width: 290px;
-	padding:4px 7px;
-	border-radius:3px;
+	padding: 4px 7px;
+	border-radius: 3px;
 	border: 1px solid #DFDFDF;
-	background-color:#FFF;
+	background-color: #FFF;
 }
 .doc-it-admin-submit-btn {
-	margin-top: 5px;
+	margin-top: 2px;
 	padding: 10px 15px;
-	border-radius: 30px;
+	border-radius: 5px;
 	background-color: #F15D2E !important;
 	color: #fff !important;
 	font-weight: normal;
@@ -175,12 +198,12 @@
 	box-shadow: 0 1px 4px #000;
 	border: none;
 	letter-spacing: 1px;
-	outline:none;
+	outline: none;
 }
 .doc-it-admin-submit-btn:hover {
 	background-color: #F11E2E !important;
 	color: #FFF !important;
-	outline:none;
+	outline: none;
 	text-shadow: 1px 1px 3px #444;
 	-webkit-transition: background 2s;
 	-webkit-transition: all 0.30s ease-in-out;
@@ -242,7 +265,7 @@
 	background-size: 34px !important;
 	height: 34px !important;
 	width: 34px !important;
-	display:none;
+	display: none;
 }
 .doc-it-icon-wrap a {
 	float: right;
@@ -253,17 +276,16 @@
 	cursor: default;
 	outline: none;
 	border: none;
-	box-shadow:0 5px 30px #222;
-	border-radius:5px; 
+	box-shadow: 0 5px 30px #222;
+	border-radius: 5px;
 	-webkit-transition: all 0.30s ease-in-out;
 	-moz-transition: all 0.30s ease-in-out;
 	-o-transition: all 0.30s ease-in-out;
 	transition: all 0.30s ease-in-out;
-
 }
 .doc-it-icon-wrap a:hover {
-	opacity:.95;
-	box-shadow:0 3px 5px #000;
+	opacity: .95;
+	box-shadow: 0 3px 5px #000;
 	-webkit-transition: all 0.30s ease-in-out;
 	-moz-transition: all 0.30s ease-in-out;
 	-o-transition: all 0.30s ease-in-out;
@@ -271,7 +293,7 @@
 }
 .doc-it-icon-wrap a.facebook-icon {
 	background: url(../images/facebook-icon.png) no-repeat;
-	cursor:pointer;
+	cursor: pointer;
 }
 a.icon-animate-small {
 	background-position: top right !important;
@@ -308,44 +330,59 @@ a.icon-animate-small {
 	transition: all 0.30s ease-in-out;
 }
 input.no_input_backg {
-	color:#FFF;
-	margin-left:3px;
-	font-size:15px;
+	color: #FFF;
+	margin-left: 3px;
+	font-size: 15px;
 }
 .delete_option {
-	font-size:15px;
-	text-decoration:none;
-	border-radius:25px;
-background:#FFF;
-padding:1px 4px;
-font-weight:bold;
+	font-size: 15px;
+	text-decoration: none;
+	border-radius: 25px;
+	background: #FFF;
+	padding: 1px 4px;
+	font-weight: bold;
 }
 .company-info-style input[type="text"] {
-	margin-bottom:2px;
-	padding:7px 10px;
-	outline:none !important;
-	border:none;
-	box-shadow:none;
+	margin-bottom: 2px;
+	padding: 7px 10px;
+	outline: none !important;
+	border: none;
+	box-shadow: none;
 }
-#doc-it-color-options-main-wrapper-padding-input {
-	margin:15px 0 0 10px;
-	line-height:22px;
-	padding:2px 7px;
+#doc-it-color-options-main-wrapper-padding-input, #doc-it-color-options-main-wrapper-margin-input, #doc-it-color-options-main-wrapper-width-input {
+	margin: 10px 0 0 10px;
+	line-height: 22px;
+	padding: 2px 7px;
 }
 input[type="text"].doc-it-custom-name {
-	margin-bottom:10px;
-	width:250px;
+	margin-bottom: 10px;
+	width: 250px;
 }
 .docit-wp-header-custom {
-	margin:35px 0 25px 0;	
-	font-size:13px;
-	padding:0px;
-	line-height:19px;
+	margin: 30px 0 35px 0;
+	font-size: 13px;
+	padding: 0px;
+	line-height: 19px;
 }
-.doc-it-settings-admin-input-wrap a { 
+textarea#doc-it-color-options-main-wrapper-css-input {
+	width: 100%;
+	max-width: 100%;
+	min-height: 350px;
+	clear: both;
+	background: #F9F9F9;
+	font-family: Consolas, Monaco, monospace;
+	font-size: 12px;
+	width: 100%;
+	height: 300px;
+	outline: 0;
+}
+.docit-custom-css-text {
+	margin-bottom: 5px;
+}
+.doc-it-settings-admin-input-wrap a {
 	text-decoration: none;
 	color: #FD770D;
-	outline:none;
+	outline: none;
 }
 .doc-it-settings-admin-input-wrap {
 	background-color: rgba(246, 244, 244, 0.3);
@@ -358,19 +395,24 @@ input[type="text"].doc-it-custom-name {
 	-webkit-border-radius: 6px;
 }
 .doc-it-settings-admin-input-wrap select {
-padding: 2px;
-height: 2em;
-width:33% !important;
+	padding: 2px;
+	height: 2em;
+	width: 33% !important;
+}
+select#doc-it-color-options-menu-position {
+	padding: 0px !important;
+	height: 2em;
+	margin: 10px 0 0 10px;
+	width: 178px !important;
 }
 .doc-it-settings-admin-input-wrap h1 {
-	font-size:29px;	
-	margin-bottom:8px;
-	
+	font-size: 29px;
+	margin-bottom: 8px;
 }
 .styled-wrap-options {
 	border-top: 1px dotted #8A8A8A;
-	padding:28px 0 15px 0;
-line-height:20px;	
+	padding: 28px 0 15px 0;
+	line-height: 20px;
 }
 .buy-extensions-btn {
 	margin-top: 15px;
@@ -397,4 +439,7 @@ line-height:20px;
 	-moz-transition: all 0.30s ease-in-out;
 	-o-transition: all 0.30s ease-in-out;
 	transition: all 0.30s ease-in-out;
+}
+.toggle-custom-textarea-hide, #doc-it-color-options-main-wrapper-css-input, .docit-custom-css-text {
+	display: none;
 }

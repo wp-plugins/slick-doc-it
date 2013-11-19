@@ -3,12 +3,12 @@
 Plugin Name: Doc It
 Plugin URI: http://slickremix.com/
 Description: Create documentation in style for anything with this plugin!
-Version: 1.0
+Version: 1.0.1
 Author: SlickRemix
 Author URI: http://slickremix.com/
 Requires at least: wordpress 3.5
-Tested up to: wordpress 3.7
-Stable tag: 1.0
+Tested up to: wordpress 3.7.1
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -22,7 +22,9 @@ If you need support or want to tell us thanks please contact us at info@slickrem
 This is the main file for building the plugin into wordpress
 
 */
-define( 'DOCIT_PLUGIN_PATH', plugins_url() ) ;
+define( 'DOCIT_URL', plugins_url( '', __FILE__ ) );
+define( 'DOCIT_DIR', plugin_dir_path( __FILE__ ) );
+
 
 // Include core files and classes
 include( 'includes/di-functions.php' );
@@ -31,6 +33,7 @@ include( 'includes/di-shortcode.php' );
 // Include admin
 include( 'admin/doc-it-system-info.php' );
 include( 'admin/doc-it-settings-page.php' );
+
 // Include Leave feedback, Get support and Plugin info links to plugin activation and update page.
 add_filter("plugin_row_meta", "docit_add_leave_feedback_link", 10, 2);
 

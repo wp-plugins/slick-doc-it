@@ -1,5 +1,4 @@
 <?php
-
 function doc_it_system_info_page(){
 ?>
 
@@ -85,7 +84,7 @@ function doc_it_system_info_page(){
 				<tr>
                     <td><?php _e('WP Max Upload Size','docitystem'); ?></td>
                     <td><?php
-                    	echo wp_convert_bytes_to_hr( wp_max_upload_size() );
+                    	echo size_format( wp_max_upload_size() );
                     ?></td>
                 </tr>
                 

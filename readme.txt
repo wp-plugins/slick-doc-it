@@ -4,7 +4,7 @@ Tags: documentation, docs, doc, post, page, organize, notes, colored menu, menu,
 Requires at least: 3.5
 Tested up to: 3.7.1
 Requires at Doc It Plugin least: 1.0
-Stable tag: 1.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 
 Create documentation in style for anything with this plugin!
@@ -13,7 +13,7 @@ Create documentation in style for anything with this plugin!
 
 With this plugin you can organize your documentation for whatever it is you need to tell people about. For instance if you sell plugins and need to explain how it all works, or you have a book and want to create an index of chapters, or video games information, the list goes on and on. 
 
-Get the [Premium Version](http://www.slickremix.com/product/doc-it-premium-extension/) which allows you to add unlimited menus and change the colors of the menu... FREE right now, use this coupon code on checkout: DocItTester
+Get the [Premium Version](http://www.slickremix.com/product/doc-it-premium-extension/) which allows you to add unlimited menus and change the colors of the menu.
 
   
 = SUPPORT FORUM =
@@ -24,8 +24,14 @@ Get the [Premium Version](http://www.slickremix.com/product/doc-it-premium-exten
 Extract the zip file and just drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page.
 
 == Change-log ==
+= Version 1.0.1 Tuesday, November 19th, 2013 =
+ * Added: Ability to reorder documents for the Doc It sidebar.
+ * Added: Ability to reorder Document Item categories for the Doc It sidebar.
+ * Added: New settings options, including custom CSS area.
+ * Big Thanks to everyone in AWP for the feedback!
+ 
 
-= Version 1.0 =
+= Version 1.0.0 =
  * Initial Release
 
 == Frequently Asked Questions ==
