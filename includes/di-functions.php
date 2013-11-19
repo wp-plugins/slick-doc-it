@@ -318,7 +318,7 @@ function DocIt_page_template($template)
 	}
 	return $template;
 }
-add_filter('page_template', 'DocIt_page_template');
+add_filter('page_template', 'DocIt_page_template',99);
 
 // Create new Post Template for Doc It
 function DocIt_post_template($single_template) {
@@ -329,7 +329,7 @@ function DocIt_post_template($single_template) {
      }
      return $single_template;
 }
-add_filter('single_template','DocIt_post_template');
+add_filter('single_template','DocIt_post_template',99);
 
 // Create new Archive Template for Doc It
 function DocIt_archive_template($archive_template ) {
@@ -341,7 +341,8 @@ function DocIt_archive_template($archive_template ) {
      return $archive_template;
 }
 
-add_filter('archive_template', 'DocIt_archive_template') ;
+add_filter('archive_template', 'DocIt_archive_template',99) ;
+add_filter('taxonomy_template', 'DocIt_archive_template',99);
 
 
 
@@ -927,6 +928,4 @@ if ( !get_option( 'docitorder_options' ) )
  
 	new Taxonomy_Order_Engine;
 
-$taxnomy_name = 'di_feed_them_social';
-clean_term_cache ( _get_term_hierarchy($taxnomy_name), $taxnomy_name);
 ?>
