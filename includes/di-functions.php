@@ -869,7 +869,7 @@ if ( !get_option( 'docitorder_options' ) )
 					continue;
 
 				// update order
-				update_post_meta( $row, 'thets_order', ( $key + 1 ) );
+				update_post_meta($row, 'docit_tax_admin_order', ( $key + 1 ) );
 			}
 
 			// kill it for ajax
@@ -908,7 +908,7 @@ if ( !get_option( 'docitorder_options' ) )
 
 
 				// get the order key
-				$term_order = get_post_meta( $object->term_id, 'thets_order', true );
+				$term_order = get_post_meta( $object->term_id, 'docit_tax_admin_order', true );
 
 				// use order key if exists, invalid key if not
 				$term_key = ( $term_order != "" && $term_order != 0 ) ? (int) $term_order : $invalid_key;

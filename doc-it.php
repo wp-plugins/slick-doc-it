@@ -3,12 +3,12 @@
 Plugin Name: Doc It
 Plugin URI: http://slickremix.com/
 Description: Create documentation in style for anything with this plugin!
-Version: 1.0.1
+Version: 1.0.2
 Author: SlickRemix
 Author URI: http://slickremix.com/
 Requires at least: wordpress 3.5
 Tested up to: wordpress 3.7.1
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
