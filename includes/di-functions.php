@@ -492,8 +492,9 @@ $docitorder = new DocItOrder_Engine();
 class DocItOrder_Engine {
 
 	function __construct() {
-			add_action( 'admin_init', array( &$this, 'docitorder_install' ) );
+			
 if ( !get_option( 'docitorder_options' ) )
+		add_action( 'admin_init', array( &$this, 'docitorder_install' ) );
 		add_action( 'admin_init', array( &$this, 'refresh' ) );
 		add_action( 'init', array( &$this, 'enable_objects' ) );
 

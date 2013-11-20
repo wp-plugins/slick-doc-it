@@ -4,7 +4,7 @@ Tags: documentation, docs, doc, post, page, organize, notes, colored menu, menu,
 Requires at least: 3.5
 Tested up to: 3.7.1
 Requires at Doc It Plugin least: 1.0
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv2 or later
 
 Create documentation in style for anything with this plugin!
@@ -24,6 +24,9 @@ Get the [Premium Version](http://www.slickremix.com/product/doc-it-premium-exten
 Extract the zip file and just drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page.
 
 == Change-log ==
+= Version 1.0.3 Tuesday, November 19th, 2013 =
+ *Fixed: Install php call out of order. Fixes documents not saving order.
+ 
 = Version 1.0.2 Tuesday, November 19th, 2013 =
  *Fixed: Buggy Database Table Name!
 
