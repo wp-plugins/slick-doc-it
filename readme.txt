@@ -11,7 +11,7 @@ Create documentation in style for anything with this plugin!
 
 == Description ==
 
-With this plugin you can organize your documentation for whatever it is you need to tell people about. For instance if you sell plugins and need to explain how it all works, or you have a book and want to create an index of chapters, or video games information, the list goes on and on. 
+With this plugin you can organize your documentation for whatever it is you need to tell people about. For instance if you sell plugins and need to explain how it all works, or you have a book and want to create an index of chapters, or video games information, the list goes on and on. [View Example](http://www.slickremix.com/doc-it/) of this plugin and documentation all in one place.
 
 Get the [Premium Version](http://www.slickremix.com/product/doc-it-premium-extension/) which allows you to add unlimited menus and change the colors of the menu.
 
