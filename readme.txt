@@ -1,17 +1,17 @@
 === Doc It ===
 Contributors: slickremix
-Tags: documentation, docs, doc, post, page, organize, notes, colored menu, menu, color options
+Tags: documentation, docs, doc, post, page, organize, notes, colored menu, menu, color options, knowledge, knowledge base, order, plugins, plugin, wordpress, wordpress plugin, word, simple, easy, text, text document, documents
 Requires at least: 3.5
 Tested up to: 3.7.1
 Requires at Doc It Plugin least: 1.0
 Stable tag: 1.0.3
 License: GPLv2 or later
 
-Create documentation in style for anything with this plugin!
+Create documentation for anything with style with this easy-to-use plugin!
 
 == Description ==
 
-With this plugin you can organize your documentation for whatever it is you need to tell people about. For instance if you sell plugins and need to explain how it all works, or you have a book and want to create an index of chapters, or video games information, the list goes on and on. [View Example](http://www.slickremix.com/doc-it/) of this plugin and documentation all in one place. [http://slickremix.com/doc-it/](http://slickremix.com/doc-it/)
+With this plugin you can organize your documentation for whatever it is you need to tell people about. For instance if you sell plugins and need to explain how it all works, or you have a book and want to create an index of chapters, or a video game's information, the list goes on and on. [View Example](http://www.slickremix.com/doc-it/) of this plugin and documentation all in one place. [http://slickremix.com/doc-it/](http://slickremix.com/doc-it/)
 
 Get the [Premium Version](http://www.slickremix.com/product/doc-it-premium-extension/) which allows you to add unlimited menus and change the colors of the menu.
 
