@@ -92,7 +92,17 @@ function doc_it_system_info_page(){
                     <td><?php _e('WP Debug Mode','docitystem')?></td>
                     <td><?php if ( defined('WP_DEBUG') && WP_DEBUG ) echo '<mark class="yes">' . __('Yes', 'docitystem') . '</mark>'; else echo '<mark class="no">' . __('No', 'docitystem') . '</mark>'; ?></td>
                 </tr>
-                
+                 <tr>
+          <td><?php _e('fsockopen','ftsystem')?></td>
+          <td><?php
+ if(function_exists('fsockopen')) {
+      echo "fsockopen is ON";
+ }
+ else {
+      echo "fsockopen is not enabled and must be set to ON for our plugin to work properly with all feeds.";
+ }
+ ?></td>
+        </tr>
             </tbody>
 		</table> 
   </div><!--/docit-admin-help-faqs-wrap-->   

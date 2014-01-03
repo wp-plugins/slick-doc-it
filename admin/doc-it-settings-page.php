@@ -277,8 +277,8 @@ else {
       <div class="clear"></div>
       </div><!--styled-wrap-options-->
            
-           <!-- This works it's not fully developed yet. We need to make conditions for the menu on the front end when active. -->
-           <div style="display:none;" class="doc-it-color-settings-admin-input-label docit-wp-header-custom"><div class="styled-wrap-options">Check the box to make the menu items close when landing on a page.</div>
+           <!-- Custom Option to have submenus closed on page load -->
+           <div class="doc-it-color-settings-admin-input-label docit-wp-header-custom"><div class="styled-wrap-options">Check the box to make the menu items close when landing on a page.</div>
       <input name="doc-it-display-menu-closed" class="doc-it-color-settings-admin-input" type="checkbox"  id="doc-it-display-menu-closed" value="1" <?php echo checked( '1', get_option( 'doc-it-display-menu-closed' ) ); ?>/>
         		   <?php  
                         if (get_option( 'doc-it-display-menu-closed' ) == '1') {

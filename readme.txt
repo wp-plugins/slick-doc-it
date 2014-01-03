@@ -2,9 +2,9 @@
 Contributors: slickremix
 Tags: documentation, docs, doc, post, page, organize, notes, colored menu, menu, color options, knowledge, knowledge base, order, plugins, plugin, wordpress, wordpress plugin, word, simple, easy, text, text document, documents
 Requires at least: 3.5
-Tested up to: 3.7.1
+Tested up to: 3.8
 Requires at Doc It Plugin least: 1.0
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 License: GPLv2 or later
 
 Create great looking documentation for anything with this easy-to-use plugin!
@@ -24,6 +24,12 @@ Get the [Premium Version](http://www.slickremix.com/product/doc-it-premium-exten
 Extract the zip file and just drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page.
 
 == Change-log ==
+= Version 1.0.4 Tuesday, January 2nd, 2014 =
+ *Fixed: Menu Icon to work with new wp 3.8 dashboard.
+ *Fixed: Doc It sidebar submenu items are automatically closed.
+ *Added: Automatically generated easy next/previous posts navigation to all documentation.
+ *Added: Premium Verion now have can use shortcode to create pop-up for Vimeo and Youtube videos! 
+
 = Version 1.0.3 Tuesday, November 19th, 2013 =
  *Fixed: Install php call out of order. Fixes documents not saving order.
  

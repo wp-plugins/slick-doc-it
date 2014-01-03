@@ -4,7 +4,11 @@
 ************************************************/
 get_header(); 
 ?>
-<?php $tax_parent = di_post_main_tax(); ?>
+<?php
+	//Post Info 
+	$postid = $post->ID;
+	$tax_parent = di_post_main_tax(); 
+?>
 
 <div id="docit-primary" class="docit-content-area">
   <div id="docit-content" class="docit-site-content" role="main">
@@ -41,17 +45,25 @@ get_header();
         </div>
         <!-- .docit-entry-content --> 
         
+      
       </article>
       <!-- #docit-post -->
       <?php endwhile; ?>
+      
+      <div class="doc-it-next-prev-wrap"><?php di_next_previous_post($postid, $tax_parent);?></div> 
     </div>
     <!-- #docit-archive-wrap --> 
+    
+	
+
   </div>
   <!-- #docit-content -->
   
   <div class="clear"></div>
 </div>
 <!-- #docit-primary -->
+
+
 
 <div class="clear"></div>
 <?php get_footer(); ?>

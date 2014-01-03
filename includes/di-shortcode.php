@@ -32,8 +32,6 @@ $docit_att = array(
 	);
 	
 ob_start(); 
-
-
 		
 //Start Doc It Menu 
 echo '<div class="docit-menu-wrap">';
@@ -81,10 +79,12 @@ echo '<div class="docit-menu-wrap">';
 		 $terms = get_terms($taxonomy, $args);
 		 
 if(empty($terms))	{
-	echo '<div class="di-empty-category">Please attach post to this category to see sidebar.</div>';
+	$output_top_wrap .= '<div class="di-empty-category">Please attach post to this category to see sidebar.</div>';
 }
+
 if($terms)	{
 		// Add Main Titles
+		$term_child_posts = array();
 		foreach($terms AS $term ) {
 			
 			
@@ -93,8 +93,10 @@ if($terms)	{
 			if ($term->parent =='0'){
 				//main category title (on bottom is posts if no sub category) 
 				
-				echo '<li class="docit-main-header"><a href="'.get_site_url().'/'.$di_root_slug.'/'.$tax_slug.'/'.$term->slug.'" class="docit-main-cat-title">'.$term-> name.'</a><div><i class="icon-angle-down"></i></div></li>';
+				echo '<li class="docit-main-header"><a href="'.get_site_url().'/'.$di_root_slug.'/'.$tax_slug.'/'.$term->slug.'" class="docit-main-cat-title">'.$term->name.'</a><div><i class="icon-angle-down"></i></div></li>';
+				
 			}
+			
 				$term_id_children = $term->term_id;
 								  
 						  $term_children_args = array(
@@ -125,6 +127,7 @@ if($terms)	{
 							$check_list = array();
 							foreach ($termchildren as $termchild) {
 								$child_count++;
+								$term_child_count++;
 
 								
 								$child_term = get_term($termchild->term_id, $taxonomy);
@@ -172,20 +175,22 @@ if($terms)	{
 												 //loop through posts
 												while ($pre_sub_posts-> have_posts()) {
 													$pre_sub_posts->the_post();
+													
+													
+													
 													$child_check[] = $pre_sub_posts->post->ID;
+													$term_child_posts[] = $pre_sub_posts->post->ID;
 												}//end while
 											}//end if	  
 									   }//end foreach
 									}//end if								
 
 									
-									echo '<li class="docit-main-cat-title"><ul class="docit-sub-menu">';
+									$output_sub_posts .= '<li class="docit-main-cat-title"><ul class="docit-sub-menu">';
 									//If this sub category is NOT a parent add posts now otherwise don't
 									if(!in_array($child_term->term_id,$check_list) && !in_array($child_term->parent,$termchildren)) {
-									  
-									  	
-									  
-									 	 echo '<li class="docit-sub-header '.$child_term->slug.'"><a href="'.get_site_url().'/'.$di_root_slug.'/'.$tax_slug.'/'.$child_term->slug.'" class="docit-sub-cat-title">'.$child_term->name.'</a><div><i class="icon-angle-down"></i></div></li>';								  	 			 
+
+									 	 $output_sub_posts .= '<li class="docit-sub-header '.$child_term->slug.'"><a href="'.get_site_url().'/'.$di_root_slug.'/'.$tax_slug.'/'.$child_term->slug.'" class="docit-sub-cat-title">'.$child_term->name.'</a><div><i class="icon-angle-down"></i></div></li>';								  	 			 
 									}
 
 																					
@@ -208,12 +213,14 @@ if($terms)	{
 												  
 								  				  // show post titles for this cat
 												  if (!in_array($posts->post->ID,$child_check)){
-												  	echo '<li class="docit-sub-post '.$posts->post->post_name.'" id="'.get_the_ID().'"><a href="'.get_site_url().'/'.$di_root_slug.'/'.$posts->post->post_name.'" class="docit-post-title">'. $posts-> post-> post_title .'</a></li>';
+												  	$output_sub_posts .= '<li class="docit-sub-post '.$posts->post->post_name.'" id="'.get_the_ID().'"><a href="'.get_site_url().'/'.$di_root_slug.'/'.$posts->post->post_name.'" class="docit-post-title">'. $posts-> post-> post_title .'</a></li>';
 												  }
 												   //Update temporary value
 												  $posts_count++;
 												  //Add Id to $checklist
 												  $check_list[]=$child_term->term_id;
+												  
+												  $term_child_posts[] = $posts->post->ID;
 												 
 											  }//end while
 										  }//end if
@@ -222,7 +229,7 @@ if($terms)	{
 									//If this sub category is a parent (Has Children) add children titles then posts [second sub category]
 								    if(!empty($termchildren_lvl2))	{
 										
-													echo '<li class="docit-sub-sub-menu-wrap"><ul class="docit-sub-sub-menu">';
+													$output_sub_posts .= '<li class="docit-sub-sub-menu-wrap"><ul class="docit-sub-sub-menu">';
 														
 														 $check_list_lvl2 = array();
 														  //Add children here
@@ -242,42 +249,46 @@ if($terms)	{
 															  
 															  if ( $sub_posts-> have_posts() ) {
 																 if(!in_array($child_of_child_term->term_id,$check_list_lvl2)){
-																  	echo '<li class="docit-sub-sub-header '.$child_of_child_term->slug.'"><a href="'.get_site_url().'/'.$di_root_slug.'/'.$tax_slug.'/'.$child_of_child_term->slug.'" class="docit-sub-sub-cat-title">'. $child_of_child_term->name .'</a></li>';
+																  	$output .= '<li class="docit-sub-sub-header '.$child_of_child_term->slug.'"><a href="'.get_site_url().'/'.$di_root_slug.'/'.$tax_slug.'/'.$child_of_child_term->slug.'" class="docit-sub-sub-cat-title">'. $child_of_child_term->name .'</a></li>';
 																 }
 																	   //loop through posts
 																	  while ( $sub_posts-> have_posts() ) {
 																		   //get the post
 																		  $sub_posts-> the_post();
 																		  // show post titles for this cat
-																		  echo '<li class="docit-sub-sub-post '.$sub_posts->post->post_name.'"><a href="'.get_site_url().'/'.$di_root_slug.'/'.$sub_posts->post->post_name.'" class="docit-post-title">'. $sub_posts->post->post_title .'</a></li>';
+																		 $output_sub_posts .= '<li class="docit-sub-sub-post '.$sub_posts->post->post_name.'"><a href="'.get_site_url().'/'.$di_root_slug.'/'.$sub_posts->post->post_name.'" class="docit-post-title">'. $sub_posts->post->post_title .'</a></li>';
 														  
 																		   //Update temporary value
 																		  $posts_count++;
 																		  $check_list_lvl2[] = $child_of_child_term->term_id;
+																		  $term_child_posts[] = $sub_posts->post->ID;
 																	  }//endwhile
 																
 															  }	  
 														  }//end foreach
 											
-											echo '</ul></li>';//end sub sub ul
+											$output_sub_posts .= '</ul></li>';//end sub sub ul
 									
 									 
 									}
 									
-									echo '</ul></li>';//end sub menu	
+									$output_sub_posts .= '</ul></li>';//end sub menu	
 												
 							}
 							
 									
-									
 							//If no Sub categories add posts under main title
-							if ($child_count == 0){
-								
 								$post_args = array (
 								'orderby' => 'menu_order',
 								'order' => 'ASC',
-								'taxonomy'=> $taxonomy,
-								'term'=> $term->slug,
+								'tax_query'	=> array(
+								  array(
+									  'taxonomy'  => $taxonomy,
+									  'field'     => 'id',
+									  'terms'     => $term->term_id, // exclude media posts in the news-cat custom taxonomy
+									  'include_children' => false
+									  )),
+								'post__not_in' => $term_child_posts,
 								'posts_per_page' => -1,
 								'suppress_filters' => true, 
 								);
@@ -295,23 +306,40 @@ if($terms)	{
 											$posts-> the_post();
 							
 											// show post titles for this cat
-											echo '<li class="docit-main-link '.$posts->post->post_name.'"><a href="'.get_site_url().'/'.$di_root_slug.'/'.$posts->post->post_name.'" class="docit-post-title">'. $posts-> post-> post_title .'</a></li>';
+											$output_main_posts .= '<li class="docit-main-link '.$posts->post->post_name.'"><a href="'.get_site_url().'/'.$di_root_slug.'/'.$posts->post->post_name.'" class="docit-post-title">'. $posts-> post-> post_title .'</a></li>';
 							
 											// Update temporary value
 											$posts_count++;
 										}//end while
-									}//end If
-							}//end if
+									}//end I
+			
+			print $output_main_posts;
+			print $output_sub_posts;
+			
+			unset($output_main_posts,$output_sub_posts);
 			echo '</ul>';//end main ul	
+		
+		$term_counter++;
 		}
 	
+	
+	
+		
 	}//endiif Terms
 	
-	}
+	$main_loop_count++;
+}
 		
 	echo '</div>';
+	
 	?>
 <?php
+
+
+
+/*echo '<pre>';
+	print_r($main_docit_array);
+echo '</pre>';*/
 
  $url = $_SERVER['REQUEST_URI']; //returns the current URL
  	$tokens = explode('/', $url);
@@ -321,6 +349,10 @@ if($terms)	{
               jQuery(document).ready(function () {  
              
                     jQuery('.docit-menu-wrap .<?php echo $final_url;?>').addClass('di-active');
+					jQuery('.docit-menu-wrap .<?php echo $final_url;?>').prevUntil('div').show();
+					jQuery('.docit-menu-wrap .<?php echo $final_url;?>').nextUntil('div').show();
+					jQuery('.docit-menu-wrap .<?php echo $final_url;?>').parents().prevUntil('ul').show();
+					jQuery('.docit-menu-wrap .<?php echo $final_url;?>').parents().show();
                
               });
               </script>
