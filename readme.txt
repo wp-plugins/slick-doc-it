@@ -13,6 +13,23 @@ Create great looking documentation for anything with this easy-to-use plugin!
 
 With this plugin you can organize your documentation for whatever it is you need to tell people about. For instance if you sell plugins and need to explain how it all works, or you have a book and want to create an index of chapters, or a video game's information, the list goes on and on. View an Example and documentation of this plugin all in one place. [http://slickremix.com/doc-it/](http://slickremix.com/doc-it/)
 
+
+= Free Plugin Features =
+  * Create Slick Documentation for anything.
+  * Create a topic/item to document with a sidebar menu.
+  * Attach an "Introduction" page to each Doc It topic/item.
+  * Automatically generated breadcrumbs for simple navigation.
+  * Automatically generated Next/Previous links (on Doc It posts) for simple navigation.
+  * Slide down sidebar menu options for sub menu items.
+  * Easy Drag-and-Drop organize Doc It Posts and Categories.
+  
+= Premium Extension Features =
+  * Unlimited Doc It topics/items.
+  * Unlimited Doc It sidebar menus.
+  * Settings page options to change colors easily for sidebar menu.
+  * Create video pop-up for Vimeo and Youtube videos using [di-video][/di-video] shortcode.
+  
+
 Get the [Premium Version](http://www.slickremix.com/product/doc-it-premium-extension/) which allows you to add unlimited menus and change the colors of the menu.
 
   
@@ -25,16 +42,16 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 
 == Change-log ==
 = Version 1.0.4 Tuesday, January 2nd, 2014 =
- *Fixed: Menu Icon to work with new wp 3.8 dashboard.
- *Fixed: Doc It sidebar submenu items are automatically closed.
- *Added: Automatically generated easy next/previous posts navigation to all documentation.
- *Added: Premium Verion now have can use shortcode to create pop-up for Vimeo and Youtube videos! 
+ * Fixed: Menu Icon to work with new wp 3.8 dashboard.
+ * Added: Doc It sidebar sub menu items now have option (in settings page) to be automatically closed.
+ * Added: Automatically generated easy next/previous posts navigation to all documentation.
+ * Added: Premium Version has shortcode option to create pop-up for Vimeo and Youtube videos! 
 
 = Version 1.0.3 Tuesday, November 19th, 2013 =
- *Fixed: Install php call out of order. Fixes documents not saving order.
+ * Fixed: Install php call out of order. Fixes documents not saving order.
  
 = Version 1.0.2 Tuesday, November 19th, 2013 =
- *Fixed: Buggy Database Table Name!
+ * Fixed: Buggy Database Table Name!
 
 = Version 1.0.1 Tuesday, November 19th, 2013 =
  * Added: Ability to reorder documents for the Doc It sidebar.
