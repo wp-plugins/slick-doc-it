@@ -42,6 +42,7 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 
 
 == Change-log ==
+
  = Version 1.0.5 Monday January 27nd, 2014 =
  * Fixed: New Settings Page UI for wp 3.8 update.
  * Fixed: Added ellipsis to post titles that show when clicking any of the main categories.
@@ -62,7 +63,7 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
  * Added: Ability to reorder documents for the Doc It sidebar.
  * Added: Ability to reorder Document Item categories for the Doc It sidebar.
  * Added: New settings options, including custom CSS area.
- * Big Thanks to everyone in [Advanced WordPress] (https://www.facebook.com/groups/advancedwp/) Facebook Group for the feedback and testing!
+ * Big Thanks to everyone in [Advanced WordPress](https://www.facebook.com/groups/advancedwp/) Facebook Group for the feedback and testing!
  
  = Version 1.0.0 =
  * Initial Release
