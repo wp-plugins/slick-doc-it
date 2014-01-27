@@ -7,7 +7,7 @@ Requires at Doc It Plugin least: 1.0
 Stable tag: 1.0.5
 License: GPLv2 or later
 
-Create great looking documentation for anything with this easy-to-use plugin!
+Create great looking documentation for anything with this plugin!
 
 == Description ==
 
