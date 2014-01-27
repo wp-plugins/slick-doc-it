@@ -42,10 +42,9 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 
 
 == Change-log ==
-
-= Version 1.0.5 Monday January 27nd, 2014 =
+ = Version 1.0.5 Monday January 27nd, 2014 =
  * Fixed: New Settings Page UI for wp 3.8 update.
- * Fixed: Added ellipsis to post titles that show when clicking any of the main categorires.
+ * Fixed: Added ellipsis to post titles that show when clicking any of the main categories.
  
  = Version 1.0.4 Tuesday, January 2nd, 2014 =
  * Fixed: Menu Icon to work with new wp 3.8 dashboard.
@@ -53,20 +52,19 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
  * Added: Automatically generated easy next/previous posts navigation to all documentation.
  * Added: Premium Version has shortcode option to create pop-up for Vimeo and Youtube videos! 
 
-= Version 1.0.3 Tuesday, November 19th, 2013 =
+ = Version 1.0.3 Tuesday, November 19th, 2013 =
  * Fixed: Install php call out of order. Fixes documents not saving order.
  
-= Version 1.0.2 Tuesday, November 19th, 2013 =
+ = Version 1.0.2 Tuesday, November 19th, 2013 =
  * Fixed: Buggy Database Table Name!
 
-= Version 1.0.1 Tuesday, November 19th, 2013 =
+ = Version 1.0.1 Tuesday, November 19th, 2013 =
  * Added: Ability to reorder documents for the Doc It sidebar.
  * Added: Ability to reorder Document Item categories for the Doc It sidebar.
  * Added: New settings options, including custom CSS area.
  * Big Thanks to everyone in [Advanced WordPress] (https://www.facebook.com/groups/advancedwp/) Facebook Group for the feedback and testing!
  
-
-= Version 1.0.0 =
+ = Version 1.0.0 =
  * Initial Release
 
 == Frequently Asked Questions ==
