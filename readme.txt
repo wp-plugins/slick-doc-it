@@ -43,7 +43,7 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 
 == Change-log ==
 
- = Version 1.0.5 Monday January 27nd, 2014 =
+ = Version 1.0.5 Monday January 27th, 2014 =
  * Fixed: New Settings Page UI for wp 3.8 update.
  * Fixed: Added ellipsis to post titles that show when clicking any of the main categories.
  
