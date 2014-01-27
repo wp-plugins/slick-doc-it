@@ -160,6 +160,7 @@
 	background-image: none !important;
 	background-position: 0% 0% !important;
 	background-repeat: repeat !important;
+	background: transparent !important;
 }
 #docit-primary [class^="icon-home"], #docit-primary[class*=" icon--home"], #docit-primary [class^="icon-chevron-right"],[class*=" icon-chevron-right"], #docit-primary [class^="icon-chevron-left"],[class*=" icon-chevron-left"] {
 	display:inline-block !important;
@@ -405,6 +406,9 @@ body.tax-di_categories #docit-archive-wrap, body.single-docit #docit-archive-wra
 	padding:0 !important;
 	line-height: 45px !important;
 }
+.logged-in #docit-primary .doc-it-entry-header .doc-it-entry-title a {
+	width: 92%;
+}
 #docit-primary .doc-it-entry-header .doc-it-entry-title a {
 	text-decoration: none;
 	font-size: 20px;
@@ -412,6 +416,11 @@ body.tax-di_categories #docit-archive-wrap, body.single-docit #docit-archive-wra
 	-moz-transition: all 0.30s ease-in-out;
 	-o-transition: all 0.30s ease-in-out;
 	transition: all 0.30s ease-in-out;
+	text-overflow: ellipsis;
+	display: block;
+	width: 98%;
+	white-space: nowrap;
+	overflow: hidden;
 }
 #docit-primary .doc-it-entry-summary {
 	padding: 10px 15px;
