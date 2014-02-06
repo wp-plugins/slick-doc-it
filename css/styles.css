@@ -171,7 +171,7 @@
 #docit-primary .docit-menu-wrap li.docit-main-link.di-active {
 	background: #eee;
 	margin: 4px 15px 4px 15px !important;
-	padding: 4px 0 4px 10px !important;
+	padding: 4px 4px 4px 10px !important;
 	border-radius: 4px; 
 	-webkit-transition: background 0.30s ease-in-out;
 	-moz-transition: background 0.30s ease-in-out;

@@ -74,8 +74,7 @@ function  di_head_color_code() {
 		
 	  wp_register_style('di_head_color_code', plugins_url( 'colorCode/css/custom.css',  dirname(__FILE__) ) );
 	  wp_enqueue_style('di_head_color_code'); 
-	  wp_register_script('di_head_color_code_main', plugins_url( 'colorCode/js/rainbow.min.js',  dirname(__FILE__) ),true );
-	  wp_enqueue_script( 'di_head_color_code_main');
+	  wp_enqueue_script( 'di_head_color_code_main', plugins_url( 'colorCode/js/rainbow.min.js',  dirname(__FILE__) ),'','',true ); 
 
 	}
  }
@@ -929,78 +928,5 @@ if ( !get_option( 'docitorder_options' ) )
 	}
  
 	new Taxonomy_Order_Engine;
-
-
-function di_next_previous_post($postid, $tax_parent) {
-
-	$term_children_args = array(
-		  'orderby'       => 'none', 
-		  'order'         => 'ASC',
-		  'hide_empty'    => false, 
-		  'exclude'       => '', 
-		  'exclude_tree'  => '', 
-		  'include'       => '',
-		  'number'        => '', 
-		  'fields'        => 'all', 
-		  'slug'          => '', 
-		  'parent'        => '',
-		  'hierarchical'  => false, 
-		  'get'           => '', 
-		  'name__like'    => '',
-		  'pad_counts'    => false, 
-		  'offset'        => '', 
-		  'search'        => '', 
-		  'cache_domain'  => 'core'
-	  ); 
-	  // Gets every "category" (term) in this taxonomy to get the respective posts
-	   $termchildren = get_terms($tax_parent, $term_children_args);
-	 
-	   $ids = array();  
-	   $array_count = 0;
-	   foreach ($termchildren as $termchild) {
-		   $tax = $termchild->taxonomy;
-		   $tax_sub = $termchild->slug;
-		   
-		   if ($termchild->parent !== '0') {
-			  $postlist_args = array(
-				 'posts_per_page'  => -1,
-				 'order'           => 'ASC',
-				 'post_type'       => 'docit',
-				 'tax_query' => array(
-					  array(
-						  'taxonomy' => $tax,
-						  'field' => 'slug',
-						  'terms' => $tax_sub
-					  )
-				  )
-			  ); 
-			  $postlist = get_posts( $postlist_args );
-			  
-			  // get ids of posts retrieved from get_posts
-			  
-			  
-			  foreach ($postlist as $thepost) {
-				if(!in_array($thepost->ID,$ids)) {
-				   $ids[$array_count] = $thepost->ID;
-				   $array_count++;
-				}
-			  }
-		  }
-	   }
-	
-	// get and echo previous and next post in the same taxonomy        
-	$thisindex = array_search($postid, $ids);
-	
-		$previd = $ids[$thisindex-1];
-		$nextid = $ids[$thisindex+1];
-	
-	
-	if ( !empty($previd) ) {
-	   echo '<i class="icon-chevron-left"></i> <a class="docit-prev-post" rel="prev" href="' . get_permalink($previd). '">'.get_the_title($previd).'</a>';
-	}
-	if ( !empty($nextid) ) {
-	   echo '<i class="icon-chevron-right"></i> <a class="docit-next-post" rel="next" href="' . get_permalink($nextid). '">'.get_the_title($nextid).'</a>';
-	} 
-}
 
 ?>

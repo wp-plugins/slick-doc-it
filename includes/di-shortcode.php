@@ -82,9 +82,12 @@ if(empty($terms))	{
 	$output_top_wrap .= '<div class="di-empty-category">Please attach post to this category to see sidebar.</div>';
 }
 
+
 if($terms)	{
 		// Add Main Titles
 		$term_child_posts = array();
+		$next_prev_posts = array();
+		$term_counter = 1;
 		foreach($terms AS $term ) {
 			
 			
@@ -180,6 +183,19 @@ if($terms)	{
 													
 													$child_check[] = $pre_sub_posts->post->ID;
 													$term_child_posts[] = $pre_sub_posts->post->ID;
+													
+												  //Next/Prev array build
+												  if (!in_array($sub_posts->post->ID,$next_prev_posts[$term_counter][2])) { 
+													  $next_prev_posts[$term_counter][2][]  = $pre_sub_posts->post->ID;
+												   }
+												   else	{
+													foreach (array_keys($next_prev_posts[$term_counter][2], $pre_sub_posts->post->ID, true) as $key) {
+															unset($next_prev_posts[$term_counter][2][$key]);
+													}
+													$next_prev_posts[$term_counter][2][]  = $pre_sub_posts->post->ID;
+												  }	
+													
+													
 												}//end while
 											}//end if	  
 									   }//end foreach
@@ -221,6 +237,17 @@ if($terms)	{
 												  $check_list[]=$child_term->term_id;
 												  
 												  $term_child_posts[] = $posts->post->ID;
+												  
+												  //Next/Prev array build
+												  if (!in_array($sub_posts->post->ID,$next_prev_posts[$term_counter][2])) { 
+													  $next_prev_posts[$term_counter][2][]  = $posts->post->ID;
+												   }
+												   else	{
+													foreach (array_keys($next_prev_posts[$term_counter][2], $posts->post->ID, true) as $key) {
+															unset($next_prev_posts[$term_counter][2][$key]);
+													}
+													$next_prev_posts[$term_counter][2][]  = $posts->post->ID;
+												  }	
 												 
 											  }//end while
 										  }//end if
@@ -262,6 +289,18 @@ if($terms)	{
 																		  $posts_count++;
 																		  $check_list_lvl2[] = $child_of_child_term->term_id;
 																		  $term_child_posts[] = $sub_posts->post->ID;
+																		  
+																		   //Next/Prev array build
+																		   if (!in_array($sub_posts->post->ID,$next_prev_posts[$term_counter][2])) { 
+																			  $next_prev_posts[$term_counter][2][]  = $sub_posts->post->ID;
+																	   	   }
+																		   else	{
+																		   	foreach (array_keys($next_prev_posts[$term_counter][2], $sub_posts->post->ID, true) as $key) {
+																					unset($next_prev_posts[$term_counter][2][$key]);
+																			}
+																			$next_prev_posts[$term_counter][2][]  = $sub_posts->post->ID;
+																		  }	
+																	
 																	  }//endwhile
 																
 															  }	  
@@ -307,6 +346,11 @@ if($terms)	{
 							
 											// show post titles for this cat
 											$output_main_posts .= '<li class="docit-main-link '.$posts->post->post_name.'"><a href="'.get_site_url().'/'.$di_root_slug.'/'.$posts->post->post_name.'" class="docit-post-title">'. $posts-> post-> post_title .'</a></li>';
+											
+											 if (!in_array($posts->post->ID,$next_prev_posts)) { 
+											 	$next_prev_posts[$term_counter][1][]  = $posts->post->ID;
+											 }
+											 
 							
 											// Update temporary value
 											$posts_count++;
@@ -316,7 +360,7 @@ if($terms)	{
 			print $output_main_posts;
 			print $output_sub_posts;
 			
-			unset($output_main_posts,$output_sub_posts);
+			unset($output_main_posts,$output_sub_posts,$sub_post_list,$main_post_list);
 			echo '</ul>';//end main ul	
 		
 		$term_counter++;
@@ -331,15 +375,22 @@ if($terms)	{
 }
 		
 	echo '</div>';
+		
+		$final_nav = array();
+		foreach($next_prev_posts as $thiss)	{
+			  $thiss2 = array_reverse($thiss, true);
+			foreach	($thiss2  as $layer2)	{
+				foreach	($layer2 as $key => $value)	{
+				  		
+					  $final_nav[] = $value;
+				  
+				}
+			}
+		}
+		
+		global $di_reindexed_next_prev;
+		$di_reindexed_next_prev = $final_nav;
 	
-	?>
-<?php
-
-
-
-/*echo '<pre>';
-	print_r($main_docit_array);
-echo '</pre>';*/
 
  $url = $_SERVER['REQUEST_URI']; //returns the current URL
  	$tokens = explode('/', $url);
@@ -349,10 +400,11 @@ echo '</pre>';*/
               jQuery(document).ready(function () {  
              
                     jQuery('.docit-menu-wrap .<?php echo $final_url;?>').addClass('di-active');
-					jQuery('.docit-menu-wrap .<?php echo $final_url;?>').prevUntil('div').show();
-					jQuery('.docit-menu-wrap .<?php echo $final_url;?>').nextUntil('div').show();
-					jQuery('.docit-menu-wrap .<?php echo $final_url;?>').parents().prevUntil('ul').show();
-					jQuery('.docit-menu-wrap .<?php echo $final_url;?>').parents().show();
+					// not using for now.
+					// jQuery('.docit-menu-wrap .< ?php echo $final_url;?>').prevUntil('div').show();
+					// jQuery('.docit-menu-wrap .< ?php echo $final_url;?>').nextUntil('div').show();
+					// jQuery('.docit-menu-wrap .< ?php echo $final_url;?>').parents().prevUntil('ul').show();
+					// jQuery('.docit-menu-wrap .< ?php echo $final_url;?>').parents().show();
                
               });
               </script>

@@ -4,7 +4,7 @@ Tags: documentation, docs, doc, post, page, organize, notes, colored menu, menu,
 Requires at least: 3.5
 Tested up to: 3.8.1
 Requires at Doc It Plugin least: 1.0
-Stable tag: 1.0.5
+Stable tag: 1.0.6
 License: GPLv2 or later
 
 Create great looking documentation for anything with this plugin!
@@ -43,6 +43,13 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 
 == Change-log ==
 
+ = Version 1.0.6 Thursday Febuary 6th, 2014 =
+ * Fixed: Easy navigation links on bottom of the posts.
+ * Fixed: Breadcrumb Issue with it not showing properly.
+ * Fixed: UI fixes for settings page and front end.
+ * Fixed: js fixes for front end.
+ * NOTICE: Premium version 1.0.3 now requires a site license.
+ 
  = Version 1.0.5 Monday January 27th, 2014 =
  * Fixed: New Settings Page UI for wp 3.8 update.
  * Fixed: Added ellipsis to post titles that show when clicking any of the main categories.
