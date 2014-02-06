@@ -353,24 +353,26 @@ function doc_it_breadcrumb() {
     if (is_single()) {    
 		//Get single taxs
 		$single_taxs = di_post_main_slug();	
-		
 	
 		 if ( FALSE == is_wp_error($single_taxs)) {
 		//Print Single Tax Breadcrumb
 			  foreach ($single_taxs as $main_parent){
-				  $main_parent_url = get_term_link($main_parent->name, $main_parent->taxonomy );
+				  $main_parent_url = get_term_link($main_parent->term_id, $main_parent->taxonomy );
 				  if ( FALSE == is_wp_error($main_parent_url)) {
 				  	print '<a href="'.$main_parent_url.'">'.$main_parent->name.'</a> » ';
 				  }
 					  //If Main Parent has Children
 					  if(!empty($main_parent->children))	{
 						  foreach	($main_parent->children as $first_child){
-							  $first_child_url = get_term_link( $first_child->name, $first_child->taxonomy );
-							  echo'<a href="'.$first_child_url.'">'.$first_child->name.'</a> » ';
+							  $first_child_url = get_term_link( $first_child->term_id, $first_child->taxonomy );
+							  
+							   if ( FALSE == is_wp_error($first_child_url)) {
+								 echo'<a href="'.$first_child_url.'">'.$first_child->name.'</a> » ';
+							  }
 							  //If First Child has Children
 							  if(!empty($first_child->children))	{
 								  foreach	($first_child->children as $second_child){
-									  $second_child_url = get_term_link($second_child->name,$second_child->taxonomy);
+									  $second_child_url = get_term_link($second_child->term_id,$second_child->taxonomy);
 									  echo'<a href="'.$second_child_url.'">'.$second_child->name.'</a> » ';
 								  }//endforeach
 							  }//endif
@@ -411,7 +413,7 @@ function doc_it_breadcrumb() {
 			  //show links for all terms except the current one..
 			  if ($terminfo->term_id != $term->term_id) {
 			  //get the URL for that terms's page
-			  $url = get_term_link( $terminfo->name, get_query_var( 'taxonomy' ) );
+			  $url = get_term_link( $terminfo->term_id, get_query_var( 'taxonomy' ) );
 			  echo '<a href="'.$url.'">'.$terminfo->name.'</a>';
 			  } else {
 			  echo $terminfo->name;
