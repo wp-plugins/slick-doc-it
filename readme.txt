@@ -7,11 +7,11 @@ Requires at Doc It Plugin least: 1.0
 Stable tag: 1.0.6
 License: GPLv2 or later
 
-Create great looking documentation for anything with this plugin!
+Create great looking documentation for anything with this plugin. Great for FAQS and more!
 
 == Description ==
 
-With this plugin you can organize your documentation for whatever it is you need to tell people about. For instance if you sell plugins and need to explain how it all works, or you have a book and want to create an index of chapters, or a video game's information, the list goes on and on. View an Example and documentation of this plugin all in one place. [http://slickremix.com/doc-it/](http://slickremix.com/doc-it/)
+With this plugin you can organize your documentation for whatever it is you need to tell people about. For instance if you sell plugins and need to explain how it all works with FAQS, or you have a book and want to create an index of chapters, or a video game's information, the list goes on and on. View an Example and documentation of this plugin all in one place. [http://slickremix.com/doc-it/](http://slickremix.com/doc-it/)
 
 
 = Free Plugin Features =
