@@ -1,6 +1,6 @@
 === Doc It ===
 Contributors: slickremix
-Tags: documentation, docs, doc, post, page, organize, notes, colored menu, menu, color options, knowledge, knowledge base, order, plugins, plugin, wordpress, wordpress plugin, word, simple, easy, text, text document, documents
+Tags: documentation, docs, doc, post, page, organize, notes, colored menu, menu, color options, knowledge, knowledge base, order, plugins, plugin, wordpress, wordpress plugin, word, simple, easy, text, text document, documents, faq, faqs
 Requires at least: 3.5
 Tested up to: 3.8.1
 Requires at Doc It Plugin least: 1.0
