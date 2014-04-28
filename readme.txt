@@ -46,7 +46,7 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
  = Version 1.0.7 Monday April 28th, 2014 =
  * Fixed: Previous and Next error when only one post present.
  * Fixed: All posts with excerpts show when clicking on a category now.
- * Fixed: Previous and Next buttons now go to the next post proper post when only one sub categpry is present.
+ * Fixed: Previous and Next buttons now go to the next post proper when only one sub categpry is present.
  * Fixed Admin: Sorting feature scripts for posts and categories is now only enqueued for Doc It.
  * NOTICE: Premium version users should upgrade as well. We added a missing js file for the video popup.
  * Big thanks to all those who have helped in pointing out these errors. You know who you are!
