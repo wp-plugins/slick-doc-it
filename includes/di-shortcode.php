@@ -185,15 +185,16 @@ if($terms)	{
 													$term_child_posts[] = $pre_sub_posts->post->ID;
 													
 												  //Next/Prev array build
-												  if (!in_array($sub_posts->post->ID,$next_prev_posts[$term_counter][2])) { 
+
+													if (!in_array($pre_sub_posts->post->ID,$next_prev_posts)) { 
+														$next_prev_posts[$term_counter][2][]  = $pre_sub_posts->post->ID;
+													 }
+													 else	{
+													  foreach (array_keys($next_prev_posts[$term_counter][2], $pre_sub_posts->post->ID, true) as $key) {
+															  unset($next_prev_posts[$term_counter][2][$key]);
+													  }
 													  $next_prev_posts[$term_counter][2][]  = $pre_sub_posts->post->ID;
-												   }
-												   else	{
-													foreach (array_keys($next_prev_posts[$term_counter][2], $pre_sub_posts->post->ID, true) as $key) {
-															unset($next_prev_posts[$term_counter][2][$key]);
-													}
-													$next_prev_posts[$term_counter][2][]  = $pre_sub_posts->post->ID;
-												  }	
+													}	
 													
 													
 												}//end while
@@ -239,15 +240,16 @@ if($terms)	{
 												  $term_child_posts[] = $posts->post->ID;
 												  
 												  //Next/Prev array build
-												  if (!in_array($sub_posts->post->ID,$next_prev_posts[$term_counter][2])) { 
+													if (!in_array($posts->post->ID,$next_prev_posts)) { 
+														$next_prev_posts[$term_counter][2][]  = $posts->post->ID;
+													 }
+													 else	{
+													  foreach (array_keys($next_prev_posts[$term_counter][2], $posts->post->ID, true) as $key) {
+															  unset($next_prev_posts[$term_counter][2][$key]);
+													  }
 													  $next_prev_posts[$term_counter][2][]  = $posts->post->ID;
-												   }
-												   else	{
-													foreach (array_keys($next_prev_posts[$term_counter][2], $posts->post->ID, true) as $key) {
-															unset($next_prev_posts[$term_counter][2][$key]);
-													}
-													$next_prev_posts[$term_counter][2][]  = $posts->post->ID;
 												  }	
+	
 												 
 											  }//end while
 										  }//end if
@@ -291,15 +293,16 @@ if($terms)	{
 																		  $term_child_posts[] = $sub_posts->post->ID;
 																		  
 																		   //Next/Prev array build
-																		   if (!in_array($sub_posts->post->ID,$next_prev_posts[$term_counter][2])) { 
-																			  $next_prev_posts[$term_counter][2][]  = $sub_posts->post->ID;
-																	   	   }
-																		   else	{
-																		   	foreach (array_keys($next_prev_posts[$term_counter][2], $sub_posts->post->ID, true) as $key) {
-																					unset($next_prev_posts[$term_counter][2][$key]);
-																			}
-																			$next_prev_posts[$term_counter][2][]  = $sub_posts->post->ID;
-																		  }	
+																			   if (!in_array($sub_posts->post->ID,$next_prev_posts)) { 
+																				  $next_prev_posts[$term_counter][2][]  = $sub_posts->post->ID;
+																			   }
+																			   else	{
+																				foreach (array_keys($next_prev_posts[$term_counter][2], $sub_posts->post->ID, true) as $key) {
+																						unset($next_prev_posts[$term_counter][2][$key]);
+																				}
+																				$next_prev_posts[$term_counter][2][]  = $sub_posts->post->ID;
+																			   }	
+								
 																	
 																	  }//endwhile
 																
@@ -373,9 +376,8 @@ if($terms)	{
 	
 	$main_loop_count++;
 }
-		
 	echo '</div>';
-		
+
 		$final_nav = array();
 		foreach($next_prev_posts as $thiss)	{
 			  $thiss2 = array_reverse($thiss, true);
@@ -390,7 +392,6 @@ if($terms)	{
 		
 		global $di_reindexed_next_prev;
 		$di_reindexed_next_prev = $final_nav;
-	
 
  $url = $_SERVER['REQUEST_URI']; //returns the current URL
  	$tokens = explode('/', $url);
@@ -398,14 +399,7 @@ if($terms)	{
 		  if(!empty($final_url)) {?>
 			  <script>
               jQuery(document).ready(function () {  
-             
                     jQuery('.docit-menu-wrap .<?php echo $final_url;?>').addClass('di-active');
-					// not using for now.
-					// jQuery('.docit-menu-wrap .< ?php echo $final_url;?>').prevUntil('div').show();
-					// jQuery('.docit-menu-wrap .< ?php echo $final_url;?>').nextUntil('div').show();
-					// jQuery('.docit-menu-wrap .< ?php echo $final_url;?>').parents().prevUntil('ul').show();
-					// jQuery('.docit-menu-wrap .< ?php echo $final_url;?>').parents().show();
-               
               });
               </script>
  	<?php }
@@ -413,5 +407,4 @@ if($terms)	{
  return ob_get_clean(); 
 
 }
-
 ?>

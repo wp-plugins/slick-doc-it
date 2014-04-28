@@ -2,9 +2,9 @@
 Contributors: slickremix
 Tags: documentation, docs, doc, post, page, organize, notes, colored menu, menu, color options, knowledge, knowledge base, order, plugins, plugin, wordpress, wordpress plugin, word, simple, easy, text, text document, documents, faq, faqs
 Requires at least: 3.5
-Tested up to: 3.8.1
+Tested up to: 3.9
 Requires at Doc It Plugin least: 1.0
-Stable tag: 1.0.6
+Stable tag: 1.0.7
 License: GPLv2 or later
 
 Create great looking documentation for anything with this plugin. Great for FAQS and more!
@@ -43,13 +43,21 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 
 == Change-log ==
 
+ = Version 1.0.7 Monday April 28th, 2014 =
+ * Fixed: Previous and Next error when only one post present.
+ * Fixed: All posts with excerpts show when clicking on a category now.
+ * Fixed: Previous and Next buttons now go to the next post proper post when only one sub categpry is present.
+ * Fixed Admin: Sorting feature scripts for posts and categories is now only enqueued for Doc It.
+ * NOTICE: Premium version users should upgrade as well. We added a missing js file for the video popup.
+ * Big thanks to all those who have helped in pointing out these errors. You know who you are!
+ 
  = Version 1.0.6 Thursday Febuary 6th, 2014 =
  * Fixed: Easy navigation links on bottom of the posts.
  * Fixed: Breadcrumb Issue with it not showing properly.
  * Fixed: UI fixes for settings page and front end.
  * Fixed: js fixes for front end.
  * NOTICE: Premium version 1.0.3 now requires a site license.
- 
+
  = Version 1.0.5 Monday January 27th, 2014 =
  * Fixed: New Settings Page UI for wp 3.8 update.
  * Fixed: Added ellipsis to post titles that show when clicking any of the main categories.

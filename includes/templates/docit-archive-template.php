@@ -3,10 +3,8 @@
  	Template file for Doc It Archives
 ************************************************/
 get_header();
+$tax_parent = di_post_main_tax(); ?>
 
-?>
-
-<?php $tax_parent = di_post_main_tax(); ?>
 <div id="docit-primary" class="docit-content-area">
   <div id="docit-content" class="docit-site-content" role="main">
     <?php //Doc It sidebar menu
@@ -20,10 +18,10 @@ get_header();
            <?php doc_it_breadcrumb(); ?>
         </header>
         <!-- .docit-entry-header -->
-      
-      
-
-      <?php if ( have_posts() ) : ?>
+      <?php 
+	  global $query_string;
+		query_posts( $query_string . '&posts_per_page=-1' );
+	  if ( have_posts() ) : ?>
       <?php while ( have_posts() ) : the_post(); ?>
       <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
         <header class="doc-it-entry-header">

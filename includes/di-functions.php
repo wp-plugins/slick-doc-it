@@ -495,22 +495,23 @@ class DocItOrder_Engine {
 
 	function __construct() {
 			
-if ( !get_option( 'docitorder_options' ) )
-		add_action( 'admin_init', array( &$this, 'docitorder_install' ) );
-		add_action( 'admin_init', array( &$this, 'refresh' ) );
-		add_action( 'init', array( &$this, 'enable_objects' ) );
+	if ( !get_option( 'docitorder_options' ) )
+			add_action( 'admin_init', array( &$this, 'docitorder_install' ) );
+			add_action( 'admin_init', array( &$this, 'refresh' ) );
+			add_action( 'init', array( &$this, 'enable_objects' ) );
+	
+			add_action( 'wp_ajax_update-menu-order', array( &$this, 'update_menu_order' ) );
+	
+	
+			add_filter( 'pre_get_posts', array( &$this, 'docitorder_filter_active' ) );
+			add_filter( 'pre_get_posts', array( &$this, 'docitorder_pre_get_posts' ) );
+	
+	
+			add_filter( 'get_previous_post_where', array( &$this, 'docitorder_previous_post_where' ) );
+			add_filter( 'get_previous_post_sort', array( &$this, 'docitorder_previous_post_sort' ) );
+			add_filter( 'get_next_post_where', array( &$this, 'docitorder_next_post_where' ) );
+			add_filter( 'get_next_post_sort', array( &$this, 'docitorder_next_post_sort' ) );
 
-		add_action( 'wp_ajax_update-menu-order', array( &$this, 'update_menu_order' ) );
-
-
-		add_filter( 'pre_get_posts', array( &$this, 'docitorder_filter_active' ) );
-		add_filter( 'pre_get_posts', array( &$this, 'docitorder_pre_get_posts' ) );
-
-
-		add_filter( 'get_previous_post_where', array( &$this, 'docitorder_previous_post_where' ) );
-		add_filter( 'get_previous_post_sort', array( &$this, 'docitorder_previous_post_sort' ) );
-		add_filter( 'get_next_post_where', array( &$this, 'docitorder_next_post_where' ) );
-		add_filter( 'get_next_post_sort', array( &$this, 'docitorder_next_post_sort' ) );
 	}
 
 	function docitorder_install() {
@@ -587,15 +588,14 @@ if ( !get_option( 'docitorder_options' ) )
 	}
 
 	function load_script_css() {
-		global $pagenow;
-		if ( is_admin() && $pagenow == 'edit-tags.php' )
-			return;
-		// load JavaScript
-		wp_enqueue_script( 'jQuery' );
-		wp_enqueue_script( 'jquery-ui-sortable' );
-		wp_enqueue_script( 'docitorderjs', DOCIT_URL . '/admin/js/docitorder.js', array( 'jquery' ), null, true );
-		// load CSS
-		wp_enqueue_style( 'docitorder', DOCIT_URL . '/admin/css/docitorder.css', array( ), null );
+		if ( is_admin() && isset($_GET['post_type']) && $_GET['post_type'] == 'docit'){
+			// load JavaScript
+			wp_enqueue_script( 'jQuery' );
+			wp_enqueue_script( 'jquery-ui-sortable' );
+			wp_enqueue_script( 'docitorderjs', DOCIT_URL . '/admin/js/docitorder.js', array( 'jquery' ), null, true );
+			// load CSS
+			wp_enqueue_style( 'docitorder', DOCIT_URL . '/admin/css/docitorder.css', array( ), null );
+		}
 	}
 
 	function refresh() {
@@ -816,26 +816,30 @@ if ( !get_option( 'docitorder_options' ) )
 		 * Simple class constructor
 		 */
 		function __construct() {
-			// admin initialize
-			add_action( 'admin_init', array( $this, 'admin_init' ) );
-
-			// front-end initialize
-			add_action( 'init', array( $this, 'init' ) );
+			if ( is_admin() && isset($_GET['post_type']) && $_GET['post_type'] == 'docit'){
+				// admin initialize
+				add_action( 'admin_init', array( $this, 'admin_init' ) );
+	
+				// front-end initialize
+				add_action( 'init', array( $this, 'init' ) );
+			}
 		}
 
 		/**
 		 * Initialize administration
 		 */
 		function admin_init() {
-			// load scripts
-			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
-
-
-			// ajax to save the sorting
-			add_action( 'wp_ajax_get_inline_boxes', array( $this, 'inline_edit_boxes' ) );
-
-			// reorder terms when someone tries to get terms
-			add_filter( 'get_terms', array( $this, 'reorder_terms' ) );
+			if ( is_admin() && isset($_GET['post_type']) && $_GET['post_type'] == 'docit'){
+				// load scripts
+				add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+	
+	
+				// ajax to save the sorting
+				add_action( 'wp_ajax_get_inline_boxes', array( $this, 'inline_edit_boxes' ) );
+	
+				// reorder terms when someone tries to get terms
+				add_filter( 'get_terms', array( $this, 'reorder_terms' ) );
+			}
 		}
 
 		/**
@@ -931,4 +935,19 @@ if ( !get_option( 'docitorder_options' ) )
  
 	new Taxonomy_Order_Engine;
 
+function di_next_previous_post($postid, $tax_parent) {
+	// get and echo previous and next post in the same taxonomy
+	global $di_reindexed_next_prev;        
+	$thisindex = array_search($postid, $di_reindexed_next_prev);
+	
+		$previd = $di_reindexed_next_prev[$thisindex-1];
+		$nextid = $di_reindexed_next_prev[$thisindex+1];
+	 
+	if ( !empty($previd) ) {
+	   echo '<i class="icon-chevron-left"></i> <a class="docit-prev-post" rel="prev" href="' . get_permalink($previd). '">'.get_the_title($previd).'</a>';
+	}
+	if ( !empty($nextid) ) {
+	   echo '<i class="icon-chevron-right"></i> <a class="docit-next-post" rel="next" href="' . get_permalink($nextid). '">'.get_the_title($nextid).'</a>';
+	} 
+}
 ?>
