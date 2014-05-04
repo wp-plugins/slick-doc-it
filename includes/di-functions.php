@@ -729,12 +729,12 @@ class DocItOrder_Engine {
 
 			if ( is_admin() && !defined( 'DOING_AJAX' ) ) {
 				if ( isset( $wp_query->query['post_type'] ) ) {
-					if (isset($_GET['post_type']) && $_GET['post_type'] == 'docit')	
+					if (isset($_GET['post_type']) && $_GET['post_type'] == 'docit') {
 						if ( in_array( $wp_query->query['post_type'], $objects ) ) {
 							$wp_query->set( 'orderby', 'menu_order' );
 							// $wp_query->set( 'order', 'ASC' );
-					
 						}
+					}
 				}
 
 				
