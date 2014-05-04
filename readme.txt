@@ -4,7 +4,7 @@ Tags: documentation, docs, doc, post, page, organize, notes, colored menu, menu,
 Requires at least: 3.5
 Tested up to: 3.9
 Requires at Doc It Plugin least: 1.0
-Stable tag: 1.0.7
+Stable tag: 1.0.8
 License: GPLv2 or later
 
 Create great looking documentation for anything with this plugin. Great for FAQS and more!
@@ -43,6 +43,11 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 
 == Change-log ==
 
+ = Version 1.0.8 Sunday March 4th, 2014 =
+ * Fixed: Sorting order works again for all post lists and categories in the admin panel.
+ * Thanks to noodles91 for pointing out the problem above.
+ * WP Bug: Category sorting will remove all dashes next to sub categories, and when you refresh the page they do not come back. Bug reported to wordpress.
+ 
  = Version 1.0.7 Monday April 28th, 2014 =
  * Fixed: Previous and Next error when only one post present.
  * Fixed: All posts with excerpts show when clicking on a category now.
