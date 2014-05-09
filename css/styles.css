@@ -39,7 +39,7 @@
 	
 }
 
-#docit-primary article, #docit-primary h1, #docit-primary h2, #docit-primary h3, #docit-primary h4, #docit-primary div, #docit-primary span, #docit-primary header, #docit-primary ul, #docit-primary li, #docit-primary ol {
+#docit-primary article, #docit-primary h1, #docit-primary h2, #docit-primary h3, #docit-primary h4, #docit-primary header, #docit-primary ul, #docit-primary li, #docit-primary ol {
 		padding:0;
 		margin:0;  
 	}

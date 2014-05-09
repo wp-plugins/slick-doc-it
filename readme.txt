@@ -4,7 +4,7 @@ Tags: documentation, docs, doc, post, page, organize, notes, colored menu, menu,
 Requires at least: 3.5
 Tested up to: 3.9
 Requires at Doc It Plugin least: 1.0
-Stable tag: 1.0.8
+Stable tag: 1.0.9
 License: GPLv2 or later
 
 Create great looking documentation for anything with this plugin. Great for FAQS and more!
@@ -43,7 +43,10 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 
 == Change-log ==
 
- = Version 1.0.8 Sunday March 4th, 2014 =
+ = Version 1.0.9 Friday May 9th, 2014 =
+ * Fixed: CSS issue that was overiding styles for Jetpack sharing.
+ 
+  = Version 1.0.8 Sunday March 4th, 2014 =
  * Fixed: Sorting order works again for all post lists and categories in the admin panel.
  * Thanks to noodles91 for pointing out the problem above.
  * WP Bug: Category sorting will remove all dashes next to sub categories, and when you refresh the page they do not come back. Bug reported to wordpress.
