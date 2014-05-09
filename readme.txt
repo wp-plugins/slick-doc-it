@@ -44,7 +44,7 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 == Change-log ==
 
  = Version 1.0.9 Friday May 9th, 2014 =
- * Fixed: CSS issue that was overiding styles for Jetpack sharing.
+ * Fixed: CSS issue that was overiding styles for Jetpack sharing. View working demo here, http://wordpress.org/support/view/plugin-reviews/slick-doc-it
  
   = Version 1.0.8 Sunday March 4th, 2014 =
  * Fixed: Sorting order works again for all post lists and categories in the admin panel.
