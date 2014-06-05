@@ -2,9 +2,9 @@
 Contributors: slickremix
 Tags: documentation, docs, doc, post, page, organize, notes, colored menu, menu, color options, knowledge, knowledge base, order, plugins, plugin, wordpress, wordpress plugin, word, simple, easy, text, text document, documents, faq, faqs
 Requires at least: 3.5
-Tested up to: 3.9
+Tested up to: 3.9.1
 Requires at Doc It Plugin least: 1.0
-Stable tag: 1.0.9
+Stable tag: 1.1.0
 License: GPLv2 or later
 
 Create great looking documentation for anything with this plugin. Great for FAQS and more!
@@ -43,6 +43,9 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 
 == Change-log ==
 
+ = Version 1.1.0 June 5th, 2014 =
+ * FIXED: License Manager. If you don't have a premium version for this plugin then you don't need to worry about updating to this version.
+ 
  = Version 1.0.9 Friday May 9th, 2014 =
  * Fixed: CSS issue that was overiding styles for Jetpack sharing. View working demo here, http://wordpress.org/support/view/plugin-reviews/slick-doc-it
  
