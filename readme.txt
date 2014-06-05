@@ -43,7 +43,7 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 
 == Change-log ==
 
- = Version 1.1.0 June 5th, 2014 =
+ = Version 1.1.0 Thurdsay June 5th, 2014 =
  * FIXED: License Manager. If you don't have a premium version for this plugin then you don't need to worry about updating to this version.
  
  = Version 1.0.9 Friday May 9th, 2014 =
