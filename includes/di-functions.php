@@ -335,7 +335,7 @@ add_filter('single_template','DocIt_post_template',99);
 function DocIt_archive_template($archive_template ) {
      global $post;
 
-     if (is_archive ( 'docit' )) {
+     if ($post->post_type == 'docit' && is_archive ( 'docit' )) {
           $archive_template = dirname( __FILE__ ) . '/templates/docit-archive-template.php';
      }
      return $archive_template;
