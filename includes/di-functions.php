@@ -342,9 +342,6 @@ function DocIt_archive_template($archive_template ) {
 }
 
 add_filter('archive_template', 'DocIt_archive_template',99) ;
-add_filter('taxonomy_template', 'DocIt_archive_template',99);
-
-
 
 // DocIt Breadcrumbs
 function doc_it_breadcrumb() {
