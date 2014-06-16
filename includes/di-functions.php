@@ -74,7 +74,8 @@ function  di_head_color_code() {
 		
 	  wp_register_style('di_head_color_code', plugins_url( 'colorCode/css/custom.css',  dirname(__FILE__) ) );
 	  wp_enqueue_style('di_head_color_code'); 
-	  wp_enqueue_script( 'di_head_color_code_main', plugins_url( 'colorCode/js/rainbow.min.js',  dirname(__FILE__) ),'','',true ); 
+	  wp_register_script('di_head_color_code_main', plugins_url( 'colorCode/js/rainbow.min.js',  dirname(__FILE__) ),true );
+	  wp_enqueue_script( 'di_head_color_code_main');
 
 	}
  }
@@ -342,6 +343,9 @@ function DocIt_archive_template($archive_template ) {
 }
 
 add_filter('archive_template', 'DocIt_archive_template',99) ;
+add_filter('taxonomy_template', 'DocIt_archive_template',99);
+
+
 
 // DocIt Breadcrumbs
 function doc_it_breadcrumb() {
@@ -350,26 +354,24 @@ function doc_it_breadcrumb() {
     if (is_single()) {    
 		//Get single taxs
 		$single_taxs = di_post_main_slug();	
+		
 	
 		 if ( FALSE == is_wp_error($single_taxs)) {
 		//Print Single Tax Breadcrumb
 			  foreach ($single_taxs as $main_parent){
-				  $main_parent_url = get_term_link($main_parent->term_id, $main_parent->taxonomy );
+				  $main_parent_url = get_term_link($main_parent->name, $main_parent->taxonomy );
 				  if ( FALSE == is_wp_error($main_parent_url)) {
 				  	print '<a href="'.$main_parent_url.'">'.$main_parent->name.'</a> » ';
 				  }
 					  //If Main Parent has Children
 					  if(!empty($main_parent->children))	{
 						  foreach	($main_parent->children as $first_child){
-							  $first_child_url = get_term_link( $first_child->term_id, $first_child->taxonomy );
-							  
-							   if ( FALSE == is_wp_error($first_child_url)) {
-								 echo'<a href="'.$first_child_url.'">'.$first_child->name.'</a> » ';
-							  }
+							  $first_child_url = get_term_link( $first_child->name, $first_child->taxonomy );
+							  echo'<a href="'.$first_child_url.'">'.$first_child->name.'</a> » ';
 							  //If First Child has Children
 							  if(!empty($first_child->children))	{
 								  foreach	($first_child->children as $second_child){
-									  $second_child_url = get_term_link($second_child->term_id,$second_child->taxonomy);
+									  $second_child_url = get_term_link($second_child->name,$second_child->taxonomy);
 									  echo'<a href="'.$second_child_url.'">'.$second_child->name.'</a> » ';
 								  }//endforeach
 							  }//endif
@@ -410,7 +412,7 @@ function doc_it_breadcrumb() {
 			  //show links for all terms except the current one..
 			  if ($terminfo->term_id != $term->term_id) {
 			  //get the URL for that terms's page
-			  $url = get_term_link( $terminfo->term_id, get_query_var( 'taxonomy' ) );
+			  $url = get_term_link( $terminfo->name, get_query_var( 'taxonomy' ) );
 			  echo '<a href="'.$url.'">'.$terminfo->name.'</a>';
 			  } else {
 			  echo $terminfo->name;
@@ -485,29 +487,33 @@ function di_sort_terms_hierarchicaly(Array &$cats, Array &$into, $parentId = 0)
         di_sort_terms_hierarchicaly($cats, $topCat->children, $topCat->term_id);
     }
 }
-//Start code for sorting
-$docitorder = new DocItOrder_Engine();
 
-class DocItOrder_Engine {
-
-	function __construct() {
-			
-	if ( !get_option( 'docitorder_options' ) )
 	
+	//Start code for sorting
+	$docitorder = new DocItOrder_Engine();
+
+	class DocItOrder_Engine {
+	
+		function __construct() {
+				
+	if ( !get_option( 'docitorder_options' ) )
 			add_action( 'admin_init', array( &$this, 'docitorder_install' ) );
 			add_action( 'admin_init', array( &$this, 'refresh' ) );
 			add_action( 'init', array( &$this, 'enable_objects' ) );
 	
 			add_action( 'wp_ajax_update-menu-order', array( &$this, 'update_menu_order' ) );
 	
+	
 			add_filter( 'pre_get_posts', array( &$this, 'docitorder_filter_active' ) );
 			add_filter( 'pre_get_posts', array( &$this, 'docitorder_pre_get_posts' ) );
+	
 	
 			add_filter( 'get_previous_post_where', array( &$this, 'docitorder_previous_post_where' ) );
 			add_filter( 'get_previous_post_sort', array( &$this, 'docitorder_previous_post_sort' ) );
 			add_filter( 'get_next_post_where', array( &$this, 'docitorder_next_post_where' ) );
 			add_filter( 'get_next_post_sort', array( &$this, 'docitorder_next_post_sort' ) );
-	}
+		}
+
 
 	function docitorder_install() {
 		global $wpdb;
@@ -583,14 +589,17 @@ class DocItOrder_Engine {
 	}
 
 	function load_script_css() {
-		if ( is_admin() && isset($_GET['post_type']) && $_GET['post_type'] == 'docit'){
+			global $pagenow;
+			if ( is_admin() && $pagenow == 'edit-tags.php' )
+				return;
 			// load JavaScript
-			wp_enqueue_script( 'jQuery' );
-			wp_enqueue_script( 'jquery-ui-sortable' );
-			wp_enqueue_script( 'docitorderjs', DOCIT_URL . '/admin/js/docitorder.js', array( 'jquery' ), null, true );
-			// load CSS
-			wp_enqueue_style( 'docitorder', DOCIT_URL . '/admin/css/docitorder.css', array( ), null );
-		}
+			if (isset($_GET['post_type']) && $_GET['post_type'] == 'docit'){
+			  wp_enqueue_script( 'jQuery' );
+			  wp_enqueue_script( 'jquery-ui-sortable' );
+			  wp_enqueue_script( 'docitorderjs', DOCIT_URL . '/admin/js/docitorder.js', array( 'jquery' ), null, true );
+			  // load CSS
+			  wp_enqueue_style( 'docitorder', DOCIT_URL . '/admin/css/docitorder.css', array( ), null );
+			}
 	}
 
 	function refresh() {
@@ -725,16 +734,14 @@ class DocItOrder_Engine {
 
 
 			if ( is_admin() && !defined( 'DOING_AJAX' ) ) {
+
+
 				if ( isset( $wp_query->query['post_type'] ) ) {
-					if (isset($_GET['post_type']) && $_GET['post_type'] == 'docit') {
-						if ( in_array( $wp_query->query['post_type'], $objects ) ) {
-							$wp_query->set( 'orderby', 'menu_order' );
-							// $wp_query->set( 'order', 'ASC' );
-						}
+					if ( in_array( $wp_query->query['post_type'], $objects ) ) {
+						$wp_query->set( 'orderby', 'menu_order' );
+						$wp_query->set( 'order', 'ASC' );
 					}
 				}
-
-				
 			} else {
 
 				$active = false;
@@ -813,30 +820,26 @@ class DocItOrder_Engine {
 		 * Simple class constructor
 		 */
 		function __construct() {
-			if ( is_admin() && isset($_GET['post_type']) && $_GET['post_type'] == 'docit'){
-				// admin initialize
-				add_action( 'admin_init', array( $this, 'admin_init' ) );
-	
-				// front-end initialize
-				add_action( 'init', array( $this, 'init' ) );
-			}
+			// admin initialize
+			add_action( 'admin_init', array( $this, 'admin_init' ) );
+
+			// front-end initialize
+			add_action( 'init', array( $this, 'init' ) );
 		}
 
 		/**
 		 * Initialize administration
 		 */
 		function admin_init() {
-			if ( is_admin() && isset($_GET['post_type']) && $_GET['post_type'] == 'docit'){
-				// load scripts
-				add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
-	
-	
-				// ajax to save the sorting
-				add_action( 'wp_ajax_get_inline_boxes', array( $this, 'inline_edit_boxes' ) );
-	
-				// reorder terms when someone tries to get terms
-				add_filter( 'get_terms', array( $this, 'reorder_terms' ) );
-			}
+			// load scripts
+			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+
+
+			// ajax to save the sorting
+			add_action( 'wp_ajax_get_inline_boxes', array( $this, 'inline_edit_boxes' ) );
+
+			// reorder terms when someone tries to get terms
+			add_filter( 'get_terms', array( $this, 'reorder_terms' ) );
 		}
 
 		/**
@@ -855,11 +858,15 @@ class DocItOrder_Engine {
 			// allow enqueue only on tags/taxonomy page
 			if ( get_current_screen()->base != 'edit-tags' )
 				return;
-			// load jquery and plugin's script
-			wp_enqueue_script( 'jquery' );
-			wp_enqueue_script( 'taxonomyorder', DOCIT_URL .'/admin/js/taxonomy_order.js', array( 'jquery', 'jquery-ui-sortable' ) );
-
-			wp_enqueue_style( 'docitorder', DOCIT_URL . '/admin/css/docitorder.css', array( ), null );
+				
+				
+			if (isset($_GET['post_type']) && $_GET['post_type'] == 'docit'){
+			  // load jquery and plugin's script
+			  wp_enqueue_script( 'jquery' );
+			  wp_enqueue_script( 'taxonomyorder', DOCIT_URL .'/admin/js/taxonomy_order.js', array( 'jquery', 'jquery-ui-sortable' ) );
+  
+			  wp_enqueue_style( 'docitorder', DOCIT_URL . '/admin/css/docitorder.css', array( ), null );
+			}
 		}
 
 		/**
@@ -929,17 +936,72 @@ class DocItOrder_Engine {
 		}
 
 	}
- 
-	new Taxonomy_Order_Engine;
+	 new Taxonomy_Order_Engine;
 
 function di_next_previous_post($postid, $tax_parent) {
-	// get and echo previous and next post in the same taxonomy
-	global $di_reindexed_next_prev;        
-	$thisindex = array_search($postid, $di_reindexed_next_prev);
-	
-		$previd = $di_reindexed_next_prev[$thisindex-1];
-		$nextid = $di_reindexed_next_prev[$thisindex+1];
+
+	$term_children_args = array(
+		  'orderby'       => 'none', 
+		  'order'         => 'ASC',
+		  'hide_empty'    => false, 
+		  'exclude'       => '', 
+		  'exclude_tree'  => '', 
+		  'include'       => '',
+		  'number'        => '', 
+		  'fields'        => 'all', 
+		  'slug'          => '', 
+		  'parent'        => '',
+		  'hierarchical'  => false, 
+		  'get'           => '', 
+		  'name__like'    => '',
+		  'pad_counts'    => false, 
+		  'offset'        => '', 
+		  'search'        => '', 
+		  'cache_domain'  => 'core'
+	  ); 
+	  // Gets every "category" (term) in this taxonomy to get the respective posts
+	   $termchildren = get_terms($tax_parent, $term_children_args);
 	 
+	   $ids = array();  
+	   $array_count = 0;
+	   foreach ($termchildren as $termchild) {
+		   $tax = $termchild->taxonomy;
+		   $tax_sub = $termchild->slug;
+		   
+		   if ($termchild->parent !== '0') {
+			  $postlist_args = array(
+				 'posts_per_page'  => -1,
+				 'order'           => 'ASC',
+				 'post_type'       => 'docit',
+				 'tax_query' => array(
+					  array(
+						  'taxonomy' => $tax,
+						  'field' => 'slug',
+						  'terms' => $tax_sub
+					  )
+				  )
+			  ); 
+			  $postlist = get_posts( $postlist_args );
+			  
+			  // get ids of posts retrieved from get_posts
+			  
+			  
+			  foreach ($postlist as $thepost) {
+				if(!in_array($thepost->ID,$ids)) {
+				   $ids[$array_count] = $thepost->ID;
+				   $array_count++;
+				}
+			  }
+		  }
+	   }
+	
+	// get and echo previous and next post in the same taxonomy        
+	$thisindex = array_search($postid, $ids);
+	
+		$previd = $ids[$thisindex-1];
+		$nextid = $ids[$thisindex+1];
+	
+	
 	if ( !empty($previd) ) {
 	   echo '<i class="icon-chevron-left"></i> <a class="docit-prev-post" rel="prev" href="' . get_permalink($previd). '">'.get_the_title($previd).'</a>';
 	}
@@ -947,4 +1009,5 @@ function di_next_previous_post($postid, $tax_parent) {
 	   echo '<i class="icon-chevron-right"></i> <a class="docit-next-post" rel="next" href="' . get_permalink($nextid). '">'.get_the_title($nextid).'</a>';
 	} 
 }
+
 ?>
