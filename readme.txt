@@ -1,9 +1,9 @@
 === Doc It ===
 Contributors: slickremix
-Tags: documentation, docs, doc, post, page, organize, notes, colored menu, menu, color options, knowledge, knowledge base, order, plugins, plugin, wordpress, wordpress plugin, word, simple, easy, text, text document, documents, faq, faqs
+Tags: documentation, docs, doc, post, page, organize, notes, colored menu, menu, color options, knowledge, knowledge base, order, plugins, plugin, wordpress, wordpress plugin, word, simple, easy, text, text document, documents, faq, faqs, quoble
 Requires at least: 3.5
 Tested up to: 3.9.1
-Requires at Doc It Plugin least: 1.0
+Requires at Doc It Plugin least: 1.1.2
 Stable tag: 1.1.2
 License: GPLv2 or later
 
@@ -43,6 +43,7 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 
 
 == Change-log ==
+
  = Version 1.1.2 Monday June 16th, 2014 =
  * FIXED: Category Sorting.
  
