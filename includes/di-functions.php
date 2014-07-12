@@ -81,6 +81,10 @@ function  di_head_color_code() {
  }
 //Create Introductions
 function register_intro_posts() {
+	
+	$intro_exists = post_type_exists( 'docit_intro' );
+	
+   if ($intro_exists == false) {
         register_post_type( 'docit_intro', array(
                 'labels' => array(
 						'menu_name' => 'Introductions',
@@ -94,12 +98,16 @@ function register_intro_posts() {
         ) );
 		
 		flush_rewrite_rules();
+	}
 }
 add_action( 'init', 'register_intro_posts'); 
  
 //Create Taxenomy for Doc It
+//Create Taxenomy for Doc It
 add_action( 'init', 'register_taxonomy_di_categories' );
-  function register_taxonomy_di_categories() {
+
+function register_taxonomy_di_categories() {
+	if($_POST['page'] = 'doc-it-settings-page' && $_POST['settings-updated'] = 'true') {
  	
 	$tax_arrays = get_option('doc_it_menu_labelz'); 
  	
@@ -164,6 +172,7 @@ if (!empty($tax_arrays)){
 					}  
 			}
 	}
+  }
 }
  
 	
@@ -178,6 +187,8 @@ function docit_cpt_post_types( $post_types ) {
 add_filter( 'cpt_post_types', 'docit_cpt_post_types' );
 
 function di_cpt_init() {
+	
+	if($_POST['page'] = 'doc-it-settings-page' && $_POST['settings-updated'] = 'true') {
 	
 	$tax_arrays = get_option('doc_it_menu_labelz'); 
 	
@@ -233,6 +244,7 @@ function di_cpt_init() {
 	    register_post_type( 'Doc It', $args );
 		
 		flush_rewrite_rules();
+	}
 }
 add_action( 'init', 'di_cpt_init' );
 
