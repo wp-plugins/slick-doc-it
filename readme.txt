@@ -13,4 +13,4 @@ Create great looking documentation for anything with this plugin. Great for FAQS
 
 Removed till further development time can be properly alloted. 
 
-If anyone is interested in helping further this project please contact info@slickremix.com
+If anyone is interested in helping further this project for a profit please contact info@slickremix.com
