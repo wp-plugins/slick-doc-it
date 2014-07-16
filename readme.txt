@@ -11,4 +11,6 @@ Create great looking documentation for anything with this plugin. Great for FAQS
 
 == Description ==
 
-Removed till further development time can be properly alloted.
+Removed till further development time can be properly alloted. 
+
+If anyone is interested in helping further this project please contact info@slickremix.com
