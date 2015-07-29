@@ -1,7 +1,7 @@
 <?php
 function doc_it_system_info_page(){
 ?>
-		<div class="docit-help-admin-wrap"> <a class="buy-extensions-btn" href="http://www.slickremix.com/" target="_blank">
+		<div class="docit-help-admin-wrap"> <a class="buy-extension-btn" href="http://www.slickremix.com/downloads/doc-it-premium-extension/" target="_blank">
 		<?php _e( 'Get Extensions Here!', 'slick-doc-it' ); ?>
 		</a>
 		<h2>

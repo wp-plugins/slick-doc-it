@@ -37,7 +37,8 @@ add_action( 'wp_enqueue_style', 'doc_it_admin_css' );
 </style>
    
     <div class="doc-it-admin-wrap">
-	        <h1>Doc It Settings</h1><a class="buy-extensions-btn" href="http://www.slickremix.com/" target="_blank">Get Extensions Here!</a> <?php
+	        <h1>Doc It Settings</h1>
+<a class="buy-extensions-btn" href="http://www.slickremix.com/downloads/doc-it-premium-extension/" target="_blank">Get Extension Here!</a> <?php
 		
 		
 		$options = get_option('doc_it_menu_labelz');
@@ -81,7 +82,7 @@ add_action( 'wp_enqueue_style', 'doc_it_admin_css' );
 				}//end if $options empty
 			} else { ?>       
 	        <?php if (!empty($options)) {
-				echo '<h3 class="need-premium">Please Purchase the <a href="http://www.slickremix.com/product/doc-it-premium-extension/" target="_blank">DocIt Premium Extension</a> to create as many Document Items as you want!</h3>';
+				echo '<h3 class="need-premium">Please Purchase the <a href="http://www.slickremix.com/downloads/doc-it-premium-extension/" target="_blank">DocIt Premium Extension</a> to create as many Document Items as you want!</h3>';
 				echo'<input id="doc-it-create-id" readonly="readonly" placeholder="Please upgrade to create more" class="doc-it-settings-admin-input doc-it-custom-name need-premium-input" type="text"  value="" />';
 				echo'<br/>';
 				}
