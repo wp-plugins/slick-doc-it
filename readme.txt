@@ -13,6 +13,10 @@ Create great looking documentation for anything with this plugin. Great for FAQS
 
 With this plugin you can organize your documentation for whatever it is you need to tell people about. For instance if you sell plugins and need to explain how it all works with FAQS, or you have a book and want to create an index of chapters, or a video game's information, the list goes on and on. View an Example and documentation of this plugin all in one place. [http://slickremix.com/doc-it/](http://slickremix.com/doc-it/)
 
+Here's a look at how fast you can be setup!
+(http://www.youtube.com/watch?v=h6JLEDmsNWk): 
+[youtube http://www.youtube.com/watch?v=h6JLEDmsNWk]
+
 [Example](http://www.slickremix.com/docs/fts-getting-started/) of Quoble using of our plugin. Big Thanks! 
 
 = Free Plugin Features =
